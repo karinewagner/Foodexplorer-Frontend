@@ -19,12 +19,17 @@ export const Container = styled.div`
     display: flex;
     gap: 19px;
 
+    > svg {
+      width: 30px;
+      height: 30px;
+      color: ${({ theme }) => theme.COLORS_DARK.BUTTON_GRAY2};
+    }
+
     > h2 {
       font-family: 'Roboto', sans-serif;
       font-weight: 700;
       font-size: 25px;
-      color: ${({ theme }) => theme.COLORS_DARK.FONT_WHITE2};
-      opacity: 0.3;
+      color: ${({ theme }) => theme.COLORS_DARK.BUTTON_GRAY2};
     }
   }
 

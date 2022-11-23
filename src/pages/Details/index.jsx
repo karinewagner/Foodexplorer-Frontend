@@ -18,6 +18,7 @@ export function Details() {
         <ButtonText 
           icon={FiChevronLeft}
           title="voltar"
+          to="/requests/:id"
         />
         <div className='dishDetails'>
           <img width="350" height="350" src={Ravanello} alt="Imagem da Salada Ravanello" />

@@ -21,7 +21,7 @@ export const Container = styled.div`
   }
 
   .content::-webkit-scrollbar-thumb {
-    background-color: #065E7C;
+    background-color: ${({ theme }) => theme.COLORS_DARK.BACKGROUND_LOGO};
     border-radius: 10px;
   }
 `

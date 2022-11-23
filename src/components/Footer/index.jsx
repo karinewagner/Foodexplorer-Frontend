@@ -1,11 +1,12 @@
 import { Container } from './styles'
-import PolygonFooter from '../../img/icons/PolygonFooter.svg'
+
+import { BsHexagonFill } from 'react-icons/bs'
 
 export function Footer() {
   return (
     <Container>
-        <div className='logo'>
-          <img width="30" height="30" src={PolygonFooter} alt="Logo" />
+        <div>
+          <BsHexagonFill/>
           <h2>Food Explorer</h2>
         </div>
         <h3>

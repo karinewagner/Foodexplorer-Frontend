@@ -21,7 +21,7 @@ export const Container = styled.div`
   }
 
   .content::-webkit-scrollbar-thumb {
-    background-color: #065E7C;
+    background-color: ${({ theme }) => theme.COLORS_DARK.BACKGROUND_LOGO};
     border-radius: 10px;
   }
 `
@@ -33,11 +33,17 @@ export const Content = styled.div`
   font-family: 'Poppins', sans-serif;
   color: ${({ theme }) => theme.COLORS_DARK.FONT_WHITE2};
 
-  > button {
+  > a {
     display: flex;
     align-items: center;
 
+    font-weight: 500;
     font-size: 24px;
+
+    > svg {
+      height: 30px;
+      width: 30px;
+    }
   } 
 
   > h2 {

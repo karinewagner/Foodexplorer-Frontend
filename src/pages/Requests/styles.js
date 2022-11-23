@@ -21,7 +21,7 @@ export const Container = styled.div`
   }
 
   .content::-webkit-scrollbar-thumb {
-    background-color: #065E7C;
+    background-color: ${({ theme }) => theme.COLORS_DARK.BACKGROUND_LOGO};
     border-radius: 10px;
   }
 `
@@ -34,11 +34,34 @@ export const Content = styled.div`
   font-family: 'Poppins', sans-serif;
   color: ${({ theme }) => theme.COLORS_DARK.FONT_WHITE2};
   
-  > h2 {
+  > div {
+    display: flex;
+    justify-content: space-between;
+
     margin: 35px 0;
+
+    > a {
+    display: flex;
+    align-items: center;
+
+    font-weight: 400;
+    font-size: 18px;
+    color: ${({ theme }) => theme.COLORS_DARK.FONT_WHITE1};
+
+    background-color: ${({ theme }) => theme.COLORS_DARK.BUTTON_GRAY2};
+    padding: 0 5px;
+    border-radius: 8px;
+    opacity: 0.6;
+
+      &:hover{
+        opacity: 0.9;
+      }
+    } 
     
-    font-weight: 500;
-    font-size: 32px;
+    h2 {
+      font-weight: 500;
+      font-size: 32px;
+    }
   }
   
   > table {

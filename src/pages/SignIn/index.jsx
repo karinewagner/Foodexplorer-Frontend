@@ -1,3 +1,9 @@
+import { useState } from 'react'
+import { useNavigate } from 'react-router-dom'
+import { BsHexagonFill } from 'react-icons/bs'
+
+import { useAuth } from '../../hooks/auth'
+
 import { Container, Form } from './styles'
 
 import { Input } from '../../components/Input'
@@ -5,13 +11,20 @@ import { Button } from '../../components/Button'
 import { ButtonText } from '../../components/ButtonText'
 
 export function SignIn() {
+  const [email, setEmail] = useState("")
+  const [password, setPassword] = useState("")
+
+  const { signIn } = useAuth()
+  const navigate = useNavigate()
+
+  function handleSignIn() {
+    signIn({ email, password })
+  }
+
   return (
-    // ajustar importação do svg
     <Container>
       <div> 
-        <svg width="44" height="48" viewBox="0 0 44 48" fill="none" xmlns="http://www.w3.org/2000/svg">
-        <path d="M22.0318 0.216492L43.4349 12.0918V35.8425L22.0318 47.7179L0.628698 35.8425V12.0918L22.0318 0.216492Z" fill="#065E7C"/>
-        </svg>
+        <BsHexagonFill/>
         <h1>Food Explorer</h1>
       </div>
       <div>
@@ -23,6 +36,7 @@ export function SignIn() {
               placeholder="Exemplo: exemplo@exemplo.com"
               type="text"
               id="email"
+              onChange={e => setEmail(e.target.value)}
               />
           </div>
           <div>
@@ -31,13 +45,16 @@ export function SignIn() {
               placeholder="No mínimo 6 caracteres"
               type="password"
               id="password"
+              onChange={e => setPassword(e.target.value)}
               />
           </div>
           <Button
             title="Entrar"
+            onClick={handleSignIn}
           />
           <ButtonText 
             title="Criar uma conta"
+            to="/register"
           />
         </Form>
       </div>

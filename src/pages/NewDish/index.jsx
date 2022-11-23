@@ -19,6 +19,7 @@ export function NewDish() {
           <ButtonText 
               icon={FiChevronLeft}
               title="voltar"
+              to="/"
               />
           <h2>Editar prato</h2>
           <Form>

@@ -21,7 +21,7 @@ export const Container = styled.div`
   }
 
   .content::-webkit-scrollbar-thumb {
-    background-color: #065E7C;
+    background-color: ${({ theme }) => theme.COLORS_DARK.BACKGROUND_LOGO};
     border-radius: 10px;
   }
 `
@@ -32,19 +32,18 @@ export const Content = styled.div`
   font-family: 'Poppins', sans-serif;
   color: ${({ theme }) => theme.COLORS_DARK.FONT_WHITE2};
 
-  > button {
+  > a {
     display: flex;
-    justify-content: center;
     align-items: center;
 
     font-weight: 500;
     font-size: 24px;
 
     > svg {
-      width: 30px;
       height: 30px;
+      width: 30px;
     }
-  }
+  } 
 
   .dishDetails {
     display: flex;
@@ -52,7 +51,7 @@ export const Content = styled.div`
     align-items: center;
     gap: 42px;
 
-    margin-top: 60px
+    margin-top: 40px
   }
 
   .descriptionDetails {

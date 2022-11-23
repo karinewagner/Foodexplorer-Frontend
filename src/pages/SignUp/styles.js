@@ -15,6 +15,12 @@ export const Container = styled.div`
     gap: 19px;
     margin: auto;
 
+    > svg {
+      width: 45px;
+      height: 45px;
+      color: ${({ theme }) => theme.COLORS_DARK.BACKGROUND_LOGO};
+    }
+    
     > h1 {
       font-family: 'Roboto', sans-serif;
       font-weight: 700;
@@ -64,7 +70,7 @@ export const Form = styled.form`
   }
 
   > button {
-    margin-top: 32px;
+    margin: 32px 0;
   }
 
 `
