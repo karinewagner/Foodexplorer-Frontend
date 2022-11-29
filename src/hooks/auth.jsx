@@ -1,4 +1,4 @@
-import { createContext, useContext, useState } from 'react'
+import { createContext, useContext, useState, useEffect } from 'react'
 
 import { api } from '../services/api'
 
@@ -13,7 +13,10 @@ function AuthProvider({ children }) {
       const response = await api.post("/sessions", { email, password })
       const { user, token } = response.data
 
-      api.defaults.headers.authorization = `Bearer ${token}`
+      localStorage.setItem("@foodexplorer:user", JSON.stringify(user))
+      localStorage.setItem("@foodexplorer:token", token)
+
+      api.defaults.headers.common['Authorization'] = `Bearer ${token}`
       setData({ user, token })
 
     } catch (error) {
@@ -25,8 +28,42 @@ function AuthProvider({ children }) {
     }
   }
 
+  function signOut() {
+    localStorage.removeItem("@foodexplorer:user")
+    localStorage.removeItem("@foodexplorer:token")
+
+    setData({})
+  }
+
+  async function updateProfile({ user }) {
+    try {
+      await api.put("/users", user)
+      localStorage.setItem("@foodexplorer:user", JSON.stringify(user))
+
+      setData({ user, token: data.token })
+      alert("Perfil atualizado com sucesso!")
+
+    } catch (error) {
+      if (error.response) {
+        alert(error.response.data.message)
+      } else {
+        alert("Não foi possível atualizar o perfil.")
+      }
+    }
+  }
+
+  useEffect(() => {
+    const user = localStorage.getItem("@foodexplorer:user")
+    const token = localStorage.getItem("@foodexplorer:token")
+
+    if (token && user) {
+      api.defaults.headers.common['Authorization'] = `Bearer ${token}`
+      setData({ user: JSON.parse(user), token })
+    }
+  }, [])
+
   return (
-    <AuthContext.Provider value={{ signIn, user: data.user }}>
+    <AuthContext.Provider value={{ signIn, signOut, updateProfile, user: data.user }}>
       {children}
     </AuthContext.Provider>
   )

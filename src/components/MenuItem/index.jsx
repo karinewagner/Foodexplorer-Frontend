@@ -7,9 +7,9 @@ import { FiHeart, FiPlus, FiMinus } from 'react-icons/fi'
 import { ButtonText } from '../ButtonText'
 import { Button } from '../Button'
 
-export function MenuItem() {
+export function MenuItem({ data, ...rest}) {
   return (
-    <Container>
+    <Container {...rest}>
       <ButtonText icon={FiHeart} />
       <div className='itemOfList'>
         <img width="245" height="245" src={Ravanello} alt="Imagem da Salada Ravanello" />

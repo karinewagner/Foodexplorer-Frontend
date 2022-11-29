@@ -1,13 +1,27 @@
 import { Container, Form } from './styles'
 
-import { FiPlus, FiMinus, FiChevronLeft, FiFileText } from 'react-icons/fi'
-import { AiOutlineArrowLeft, AiOutlineUserAdd, AiOutlineMail, AiOutlineUnlock, AiOutlineLock } from 'react-icons/ai'
+import { useState } from 'react'
+import { FiUser, FiChevronLeft, FiMail, FiLock } from 'react-icons/fi'
 
 import { Input } from '../../components/Input'
 import { Button } from '../../components/Button'
 import { ButtonText } from '../../components/ButtonText'
 
+import { useAuth } from '../../hooks/auth'
+
 export function Profile() {
+  const { user, updateProfile } = useAuth()
+
+  const [name, setName] = useState(user.name)
+  const [email, setEmail] = useState(user.email)
+  const [passwordOld, setPasswordOld] = useState()
+  const [passwordNew, setPasswordNew] = useState()
+
+  async function handleUpdate() {
+    const user = {name, email, old_password: passwordOld, password: passwordNew}
+    await updateProfile({ user })
+  }
+
   return (
     <Container>
       <div className='btn'>
@@ -22,35 +36,41 @@ export function Profile() {
           <label htmlFor="email">Nome do usuário</label>
           <Input 
             placeholder='Exemplo: Maria da Silva'
-            icon={AiOutlineUserAdd} 
+            icon={FiUser} 
             type='text'
+            value={name}
+            onChange={e => setName(e.target.value)}
           />
         </div>
         <div>
           <label htmlFor="email">E-mail do usuário</label>
           <Input 
             placeholder='Exemplo: exemplo@exemplo.com'
-            icon={AiOutlineMail} 
+            icon={FiMail} 
             type='text'
+            value={email}
+            onChange={e => setEmail(e.target.value)}
           />
         </div>
         <div>
           <label htmlFor="email">Senha atual</label>
           <Input 
             placeholder='No mínimo 6 caracteres'
-            icon={AiOutlineUnlock} 
+            icon={FiLock} 
             type='password'
+            onChange={e => setPasswordOld(e.target.value)}
           />
         </div>
         <div>
           <label htmlFor="email">Nova senha</label>
           <Input 
             placeholder='No mínimo 6 caracteres'
-            icon={AiOutlineLock} 
-            type='password' 
+            icon={FiLock} 
+            type='password'
+            onChange={e => setPasswordNew(e.target.value)}
           />
         </div>
-        <Button title='Salvar'/>
+        <Button title='Salvar' onClick={handleUpdate}/>
       </Form>
     </Container>
   )
