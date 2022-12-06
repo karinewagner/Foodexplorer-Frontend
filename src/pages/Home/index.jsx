@@ -1,9 +1,10 @@
 import { Container, Content } from './styles'
 import BackgroundImg from '../../img/background/img-main.png'
 
-import { useNavigate } from 'react-router-dom'
+//import { Carousel } from 'react-responsive-carousel'
 
 import { Header } from '../../components/Header'
+import { Section } from '../../components/Section'
 import { MenuItem } from '../../components/MenuItem'
 import { Footer } from '../../components/Footer'
 
@@ -11,11 +12,6 @@ import { useDishes } from '../../hooks/dish'
 
 export function Home() {
   const { dishes } = useDishes();
-  const navigate = useNavigate()
-
-  function handleDetails(id) {
-    navigate(`/details/${id}`)
-  }
 
   return (
     <Container>
@@ -28,52 +24,27 @@ export function Home() {
             <p>Sinta o cuidado do preparo com ingredientes selecionados </p>
           </div>
         </main>
-        <section>
-          <h2>Pratos principais</h2>
-          <div>
-            {
-              dishes.map((dish, index) => (             
-                <MenuItem
-                  key={index}
-                  data={dish}
-                  onClick={() => handleDetails(dish.id)}
-                />
+        <Section title="Pratos principais">
+          {
+            dishes.map((item, index) => (
+                <MenuItem key={index} data={item}/>
               ))
-            }
-          </div>
-        </section>
-        <section>
-          <h2>Sobremesas</h2>
-          <div>
-            {
-              dishes.map(dish => (             
-                <MenuItem
-                  key={String(dish.id)}
-                  onClick={() => handleDetails(dish.id)}
-                  >
-                  <h2>{dish.title}</h2>
-                  <p>{dish.description}</p>
-                </MenuItem>
+          }
+        </Section>
+        <Section title="Sobremesas">
+          {
+            dishes.map((item, index) => (
+                <MenuItem key={index} data={item}/>
               ))
-            }
-          </div>
-        </section>
-        <section>
-          <h2>Bebidas</h2>
-          <div>
-            {
-              dishes.map(dish => (             
-                <MenuItem
-                  key={String(dish.id)}
-                  onClick={() => handleDetails(dish.id)}
-                >
-                  <h2>{dish.title}</h2>
-                  <p>{dish.description}</p>
-                </MenuItem>
+          }
+        </Section>
+        <Section title="Bebidas">
+          {
+            dishes.map((item, index) => (
+                <MenuItem key={index} data={item} />
               ))
-            }
-          </div>
-        </section>
+          }
+        </Section>
         <Footer/>
       </Content>
     </Container>

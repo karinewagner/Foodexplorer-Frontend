@@ -1,16 +1,38 @@
 import { Container, Content } from './styles'
-import Ravanello from '../../img/dishes-image/Salada-molla.png'
-import Alface from '../../img/dishes-image/alface.png'
 
 import { FiPlus, FiMinus, FiChevronLeft, FiFileText } from 'react-icons/fi'
+import { useState, useEffect } from 'react'
+import { useParams, useNavigate } from 'react-router-dom'
 
 import { Header } from '../../components/Header'
 import { ButtonText } from '../../components/ButtonText'
 import { Button } from '../../components/Button'
+import { Tag } from '../../components/Tag'
 import { Footer } from '../../components/Footer'
 
+import { api } from '../../services/api'
 
 export function Details() {
+  const [data, setData] = useState(null)
+
+  const imagemURL = data && `${api.defaults.baseURL}/files/${data.image}`
+
+  const params = useParams()
+  const navigate = useNavigate()
+
+  function handleBack() {
+    navigate(-1)
+  }
+
+  useEffect(() => {
+    async function fetchDish() {
+      const response = await api.get(`/dishes/${params.id}`)
+      setData(response.data)
+    }
+
+    fetchDish()
+  }, [])
+
   return (
     <Container>
       <Header/>
@@ -18,42 +40,36 @@ export function Details() {
         <ButtonText 
           icon={FiChevronLeft}
           title="voltar"
-          to="/requests/:id"
+          onClick={handleBack}
         />
-        <div className='dishDetails'>
-          <img width="350" height="350" src={Ravanello} alt="Imagem da Salada Ravanello" />
-          <div className='descriptionDetails'>
-            <h2>Salada Ravanello </h2>
-            <p>Rabanetes, folhas verdes e molho agridoce salpicados com gergelim</p>
-            <ul>
-              <li>
-                <img width="55" height="55" src={Alface} alt="Imagem do alimento alface" />
-                <span>alface</span>
-              </li>
-              <li>
-                <img width="55" height="55" src={Alface} alt="Imagem do alimento alface" />
-                <span>alface</span>
-              </li>
-              <li>
-                <img width="55" height="55" src={Alface} alt="Imagem do alimento alface" />
-                <span>alface</span>
-              </li>
-              <li>
-                <img width="55" height="55" src={Alface} alt="Imagem do alimento alface" />
-                <span>alface</span>
-              </li>
-            </ul>
-            <div className='amount'>
-              <strong>R$ 49,97</strong>
-              <div className='plusOrMinus'>
-                <ButtonText icon={FiMinus} />
-                <span>01</span>
-                <ButtonText icon={FiPlus} />
-              </div>
-              <Button icon={FiFileText} title="incluir" />
-              </div>
+        { 
+          data &&
+          <div className='dishDetails'>
+            <img width="350" height="350" src={imagemURL} alt="Imagem ilustrativa do prato escolhido" />
+            <div className='descriptionDetails'>
+              <h2>{data.title} </h2>
+              <p>{data.description}</p>
+              <ul>
+                <li>
+                {
+                  data.ingredients.map( ingredient => (
+                    <Tag key={String(ingredient.id)} title={ingredient.name}/>
+                    ))
+                  }
+                </li> 
+              </ul>
+              <div className='amount'>
+                <strong>R$ {data.value}</strong>
+                <div className='plusOrMinus'>
+                  <ButtonText icon={FiMinus} />
+                  <span>01</span>
+                  <ButtonText icon={FiPlus} />
+                </div>
+                <Button icon={FiFileText} title="incluir" />
+                </div>
             </div>
           </div>
+        }
       </Content>
       <Footer/>
     </Container>

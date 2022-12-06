@@ -1,30 +1,54 @@
 import { Container } from './styles'
 
-import Ravanello from '../../img/dishes-image/Ravanello.png'
-
 import { FiHeart, FiPlus, FiMinus } from 'react-icons/fi'
+import { BsPencil } from 'react-icons/bs'
+import { useNavigate } from 'react-router-dom'
 
 import { ButtonText } from '../ButtonText'
 import { Button } from '../Button'
 
-export function MenuItem({ data, ...rest}) {
+import { api } from '../../services/api'
+import { useAuth } from '../../hooks/auth'
+
+export function MenuItem({ data }) {
+  const imagemURL = data && `${api.defaults.baseURL}/files/${data.image}`
+  
+  const { user } = useAuth()
+  const navigate = useNavigate()
+
+  function handleDetails(id) {
+    navigate(`/details/${id}`)
+  }
+
+  function handleEditDish(id) {
+    navigate(`/edit/${id}`)
+  }
+
   return (
-    <Container {...rest}>
+    <Container >
+      <ButtonText onClick={() => handleEditDish(data.id)}>
+        {user.admin === 1 && (<BsPencil/>)}
+      </ButtonText>
       <ButtonText icon={FiHeart} />
-      <div className='itemOfList'>
-        <img width="245" height="245" src={Ravanello} alt="Imagem da Salada Ravanello" />
-        <h2>Salada Ravanello &gt;</h2>
-        <p>Rabanetes, folhas verdes e molho agridoce salpicados com gergelim</p>
-        <strong>R$ 49,97</strong>
-        <div className='amount'>
-          <div className='plusOrMinus'>
-            <ButtonText icon={FiMinus} />
-            <span>01</span>
-            <ButtonText icon={FiPlus} />
+          {
+            data &&
+        <div className='itemOfList'>
+          <button type="button" onClick={() => handleDetails(data.id)}>
+            <img width="245" height="245" src={imagemURL} alt="Imagem ilustrativa do prato escolhido"/>
+          </button>
+              <h2>{data.title} &gt;</h2>
+              <p>{data.description}</p>
+              <strong>R$ {data.value}</strong>
+          <div className='amount'>
+            <div className='plusOrMinus'>
+              <ButtonText icon={FiMinus} />
+              <span>01</span>
+              <ButtonText icon={FiPlus} />
+            </div>
+            <Button title="incluir" />
           </div>
-          <Button title="incluir" />
         </div>
-      </div>
+          }
     </Container>
   )
 }

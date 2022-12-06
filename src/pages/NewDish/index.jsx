@@ -1,8 +1,8 @@
 import { Container, Content, Form, ImageDishAdd } from './styles'
 
 import { FiChevronLeft, FiUpload, FiPlusSquare, FiEdit, FiXSquare } from 'react-icons/fi'
-import { useState } from 'react'
-import { useNavigate } from 'react-router-dom'
+import { useState, useEffect } from 'react'
+import { useNavigate, useParams } from 'react-router-dom'
 
 import { Header } from '../../components/Header'
 import { ButtonText } from '../../components/ButtonText'
@@ -15,17 +15,16 @@ import { Footer } from '../../components/Footer'
 import { api } from '../../services/api'
 
 export function NewDish() {
-  //const [] = useState() image // FALTA AJUSTAR A IMAGEM DO PRATO E DO INGREDIENTE
-  const [title, setTitle] = useState()
-  const [value, setValue] = useState()
-  const [description, setDescription] = useState()
+  const [imageFile, setImageFile] = useState(null)
+  const [title, setTitle] = useState("")
+  const [value, setValue] = useState("")
+  const [description, setDescription] = useState("")
 
   const [ingredients, setIngredients] = useState([])
   const [newIngredient, setNewIngredient] = useState("")
 
-  const [] = useState()
-
   const navigate = useNavigate()
+  const params = useParams()
 
   function handleAddIngredient() {
     setIngredients(prevState => [...prevState, newIngredient])
@@ -37,23 +36,69 @@ export function NewDish() {
   }
 
   async function handleNewDish() {
-    if (!title) {
-      return alert("Digite um nome para o prato.")
-    }
-
-    if (!value) {
-      return alert("Digite um valor para o prato.")
+    if (!title || !value || !description) {
+      return alert("Por gentileza, preecha todos os campos!")
     }
 
     if (newIngredient) {
       return alert("Você deixou um ingrediente no campo de adicionar, clique para adicionar ou deixe o campo vázio.")
     }
     
-    await api.post("/dishes", {title, ingredients, value, description})
+    await api.post("/dishes", {imageFile, title, ingredients, value, description})
+    console.log(imageFile, title, ingredients, value, description)
     
     alert("Prato criado com sucesso!")
-    navigate("/")
+    navigate(-1)
   }
+
+  async function handleEditDish() {
+    if (!title || !value || !description) {
+      alert("Por gentileza, preecha todos os campos!")
+    }
+
+    if (ingredients.length < 2) {
+      alert("Por gentileza, adicionar no minimo 2 ingredientes!")
+    } else {
+      const formData = new FormData()
+      formData.append("img", imageFile)
+      formData.append("title", title)
+      formData.append("description", description)
+      formData.append("price", price)
+
+      for (let i = 0; i < ingredients.length; i += 1) {
+        formData.append("ingredients", ingredients[i])
+      }
+
+      //console.log(ingredients)
+
+      await api
+        .put(`/dishes/${params.id}`, formData)
+        .then(alert("Prato editado com sucesso!"))
+        .catch((error) => {
+          if (error.response) {
+            alert(error.response.data.message)
+          } else {
+            alert("Erro ao criar o prato")
+          }
+        })
+
+      navigate(-1)
+    }
+  }
+
+  async function handleRemoveDish() {
+    const isConfirm = confirm("Tem certeza que deseja remover?")
+
+    if(isConfirm) {
+      await api.delete(`/newdish/${params.id}`)
+      navigate(-1)
+    }
+  }
+
+  function backToHome() {
+    navigate(-1)
+  }
+    
 
   return (
     <Container>
@@ -63,7 +108,7 @@ export function NewDish() {
           <ButtonText 
               icon={FiChevronLeft}
               title="voltar"
-              to="/"
+              onClick={backToHome}
               />
           <h2>Editar prato</h2>
           <Form>
@@ -75,7 +120,8 @@ export function NewDish() {
                     <FiUpload/>
                     <input 
                       id="imageDish" 
-                      type="file"/>
+                      type="file"
+                      onChange={e => setImageFile(e.target.files)} />
                   </label>
                   <span>escolha uma imagem</span>
                 </ImageDishAdd>
@@ -130,8 +176,8 @@ export function NewDish() {
           </Form>
           <div className='buttons'>
             <Button icon={FiPlusSquare} title="Adicionar prato" onClick={handleNewDish}/>
-            <Button icon={FiEdit} title="Editar prato"/>
-            <Button icon={FiXSquare} title="Excluir prato"/>
+            <Button icon={FiEdit} title="Editar prato" onClick={handleEditDish}/>
+            <Button icon={FiXSquare} title="Excluir prato" onClick={handleRemoveDish}/>
           </div>
         </Content>
       </main>

@@ -85,7 +85,7 @@ export const Content = styled.div`
 
       > li {
         display: flex;
-        flex-direction: column;
+        gap: 20px;
         align-items: center;
       }
     }
@@ -97,6 +97,7 @@ export const Content = styled.div`
       flex-direction: row;
       justify-content: space-between;
       align-items: center;
+      gap: 20px;
 
       max-width: 400px;
 
