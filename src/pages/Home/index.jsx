@@ -9,44 +9,63 @@ import { MenuItem } from '../../components/MenuItem'
 import { Footer } from '../../components/Footer'
 
 import { useDishes } from '../../hooks/dish'
+import { api } from '../../services/api'
 
 export function Home() {
   const { dishes } = useDishes();
 
   return (
     <Container>
+
       <Header/>
+
       <Content className='content'>
+
         <main>
+
           <img src={BackgroundImg} alt="Doces coloridos" />
+
           <div>
             <h2>Sabores inigualáveis</h2>
             <p>Sinta o cuidado do preparo com ingredientes selecionados </p>
           </div>
+
         </main>
+
         <Section title="Pratos principais">
+
           {
             dishes.map((item, index) => (
-                <MenuItem key={index} data={item}/>
-              ))
+              <MenuItem key={index} data={item}/>
+            ))
           }
+
         </Section>
+
         <Section title="Sobremesas">
+
           {
             dishes.map((item, index) => (
-                <MenuItem key={index} data={item}/>
-              ))
+              <MenuItem key={index} data={item}/>
+            ))
           }
+
         </Section>
+
         <Section title="Bebidas">
+
           {
             dishes.map((item, index) => (
-                <MenuItem key={index} data={item} />
-              ))
+              <MenuItem key={index} data={item} />
+            ))
           }
+
         </Section>
+
         <Footer/>
+        
       </Content>
+
     </Container>
   )
 }

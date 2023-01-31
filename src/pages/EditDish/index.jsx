@@ -14,7 +14,7 @@ import { Footer } from '../../components/Footer'
 
 import { api } from '../../services/api'
 
-export function NewDish() {
+export function EditDish() {
   const [imageFile, setImageFile] = useState(null)
   const [title, setTitle] = useState("")
   const [price, setPrice] = useState("")
@@ -24,59 +24,80 @@ export function NewDish() {
   const [newIngredient, setNewIngredient] = useState("")
 
   const navigate = useNavigate()
+  const params = useParams()
 
   function backToHome() {
       navigate(-1)
   }
-  
+
   function handleAddIngredient() {
     setIngredients(prevState => [...prevState, newIngredient])
     setNewIngredient("")
   }
   
   function handleRemoveIngredient(deleted) {
-    setIngredients(prevState => prevState.filter(ingredient => ingredient !== deleted))
+    setIngredients(prevState => prevState.filter((ingredient) => ingredient !== deleted))
   }
-
-  async function handleNewDish() {
-    if (!title || !price || !description) {
-      return alert("Por gentileza, preecha todos os campos!")
-    }
-
-    if (newIngredient) {
-      return alert("Você deixou um ingrediente no campo de adicionar, clique para adicionar ou deixe o campo vázio.")
-    }
-
-    if (ingredients.length < 1) {
-      alert("Por gentileza, adicionar no minimo 1 ingredientes!")
-
-    } else {
-      const formData = new FormData()
-      formData.append("img", imageFile)
-      formData.append("title", title)
-      formData.append("description", description)
-      formData.append("price", price)
-
-      for (let i = 0; i < ingredients.length; i += 1) {
-        formData.append("ingredients", ingredients[i])
+  
+  async function handleEditDish() {
+      if (!title || !price || !description) {
+        alert("Por gentileza, preecha todos os campos!")
       }
 
-    await api
-      .post("/dishes", formData)
-      .then(alert("Prato criado com sucesso!"))
-      .catch((error) => {
+      if (ingredients.length < 1) {
+        alert("Por gentileza, adicionar no minimo 1 ingredientes!")
 
-        if (error.response) {
-          alert(error.response.data.message)
+      } else {
+        const formData = new FormData()
+        formData.append("img", imageFile)
+        formData.append("title", title)
+        formData.append("description", description)
+        formData.append("price", price)
 
-        } else {
-          alert("Erro ao criar o prato")
+        for (let i = 0; i < ingredients.length; i += 1) {
+          formData.append("ingredients", ingredients[i])
         }
-      })
 
-    backToHome()
-    }
+        await api
+          .put(`/dishes/${params.id}`, formData)
+          .then(alert("Prato editado com sucesso!"))
+          .catch((error) => {
+
+            if (error.response) {
+              alert(error.response.data.message)
+
+            } else {
+              alert("Erro ao editar o prato")
+            }
+          })
+
+        backToHome()
+      }
   }
+
+  async function handleRemoveDish() {
+      const isConfirm = confirm("Tem certeza que deseja deletar esse item?")
+
+      if(isConfirm) {
+        await api.delete(`/dishes/${params.id}`)
+        backToHome()
+      }
+  }
+
+  
+  useEffect(() => {
+    async function fetchDish() {
+      const response = await api.get(`/dishes/${params.id}`)
+
+      const { title, description, price, ingredients } = response.data
+      setTitle(title)
+      setDescription(description)
+      setPrice(price)
+      setIngredients(ingredients.map(item => item.name))
+    }
+
+    fetchDish()
+  }, [])
 
   return (
     <Container>
@@ -84,7 +105,6 @@ export function NewDish() {
       <Header/>
 
       <main>
-
         <Content className='content'>
 
           <ButtonText 
@@ -98,23 +118,25 @@ export function NewDish() {
           <Form>
 
             <section>
-
+              
               <h3>Imagem do prato</h3>
-
               <div className='input'>
-                <ImageDishAdd>
 
+                <ImageDishAdd>
                   <label htmlFor="imageDish">
+
                     <FiUpload/>
                     <input 
                       id="imageDish" 
                       type="file"
                       onChange={e => setImageFile(e.target.files)} />
+
                   </label>
 
                   <span>escolha uma imagem</span>
 
                 </ImageDishAdd>
+
               </div>
 
             </section>
@@ -141,8 +163,7 @@ export function NewDish() {
                   ingredients.map((ingredient, index) => (
                     <NewIngredient 
                       key={String(index)}
-                      value={ingredient}
-                      onChange={(e) => setNewIngredient(e.target.value)}//
+                      onChange={e => setNewIngredient(e.target.value)}
                       onClick={() => handleRemoveIngredient(ingredient)}
                     />
                   ))
@@ -151,7 +172,6 @@ export function NewDish() {
                 <NewIngredient 
                   isNew 
                   placeholder="Adicionar"
-                  value={newIngredient}
                   onChange={e => setNewIngredient(e.target.value)}
                   onClick={handleAddIngredient}
                 />
@@ -179,22 +199,24 @@ export function NewDish() {
 
               <Textarea 
                 id="descriptionDish" 
-                placeholder="Fale brevemente sobre o prato, seus ingredientes e/ou composição."
+                placeholder="Fale brevemente sobre o prato, seus ingredientes e/ou composição"
                 onChange={e => setDescription(e.target.value)}
               />
 
             </section>
 
             <div className='buttons'>
-              <Button icon={FiPlusSquare} title="Adicionar prato" onClick={handleNewDish}/>
+              <Button icon={FiEdit} title="Editar prato" onClick={handleEditDish}/>
+              <Button icon={FiXSquare} title="Excluir prato" onClick={handleRemoveDish}/>
             </div>
 
           </Form>
-
         </Content>
+
       </main>
 
       <Footer/>
+
     </Container>
   )
 }

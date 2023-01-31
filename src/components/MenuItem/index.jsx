@@ -11,7 +11,7 @@ import { api } from '../../services/api'
 import { useAuth } from '../../hooks/auth'
 
 export function MenuItem({ data }) {
-  const imagemURL = data && `${api.defaults.baseURL}/files/${data.image}`
+  const imageURL = data && `${api.defaults.baseURL}/files/${data.img}`
   
   const { user } = useAuth()
   const navigate = useNavigate()
@@ -21,33 +21,45 @@ export function MenuItem({ data }) {
   }
 
   function handleEditDish(id) {
-    navigate(`/edit/${id}`)
+    navigate(`/editdish/${id}`)
   }
 
   return (
     <Container >
-      <ButtonText onClick={() => handleEditDish(data.id)}>
+
+      <ButtonText 
+        className='edit-dish' 
+        onClick={() => handleEditDish(data.id)}
+      >
         {user.admin === 1 && (<BsPencil/>)}
       </ButtonText>
-      <ButtonText icon={FiHeart} />
+
+      <ButtonText className='favorite-dish' icon={FiHeart} />
           {
             data &&
-        <div className='itemOfList'>
-          <button type="button" onClick={() => handleDetails(data.id)}>
-            <img width="245" height="245" src={imagemURL} alt="Imagem ilustrativa do prato escolhido"/>
-          </button>
-              <h2>{data.title} &gt;</h2>
-              <p>{data.description}</p>
-              <strong>R$ {data.value}</strong>
-          <div className='amount'>
-            <div className='plusOrMinus'>
-              <ButtonText icon={FiMinus} />
-              <span>01</span>
-              <ButtonText icon={FiPlus} />
-            </div>
-            <Button title="incluir" />
-          </div>
-        </div>
+              <div className='itemOfList'>
+
+                <button type="button" onClick={() => handleDetails(data.id)}>
+                  <img width="245" height="245" src={imageURL} alt="Imagem ilustrativa do prato escolhido"/>
+                </button>
+
+                <h2>{data.title} &gt;</h2>
+                <p>{data.description}</p>
+                <strong>R$ {data.value}</strong>
+
+                <div className='amount'>
+
+                  <div className='plusOrMinus'>
+                    <ButtonText icon={FiMinus} />
+                    <span>01</span>
+                    <ButtonText icon={FiPlus} />
+                  </div>
+                  
+                  <Button title={"incluir"} />
+
+                </div>
+                
+              </div>
           }
     </Container>
   )

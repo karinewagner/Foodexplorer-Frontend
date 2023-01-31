@@ -6,6 +6,7 @@ import { FiUser, FiChevronLeft, FiMail, FiLock } from 'react-icons/fi'
 import { Input } from '../../components/Input'
 import { Button } from '../../components/Button'
 import { ButtonText } from '../../components/ButtonText'
+import { useNavigate } from 'react-router-dom'
 
 import { useAuth } from '../../hooks/auth'
 
@@ -17,9 +18,16 @@ export function Profile() {
   const [passwordOld, setPasswordOld] = useState()
   const [passwordNew, setPasswordNew] = useState()
 
+  const navigate = useNavigate()
+
   async function handleUpdate() {
     const user = {name, email, old_password: passwordOld, password: passwordNew}
     await updateProfile({ user })
+  }
+
+  async function handleBackAfterUpdate() {
+    await handleUpdate()
+    navigate(-1)
   }
 
   return (
@@ -70,7 +78,7 @@ export function Profile() {
             onChange={e => setPasswordNew(e.target.value)}
           />
         </div>
-        <Button title='Salvar' onClick={handleUpdate}/>
+        <Button title='Salvar' onClick={handleBackAfterUpdate}/>
       </Form>
     </Container>
   )

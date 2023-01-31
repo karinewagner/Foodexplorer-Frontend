@@ -16,7 +16,7 @@ export function Header() {
   const [search, setSearch] = useState("")
   const { fetchDishes } = useContext(DishContext)
   
-  const { signOut } = useAuth()
+  const { signOut, user } = useAuth()
   const navigation = useNavigate()
 
   useEffect(() => {
@@ -28,27 +28,62 @@ export function Header() {
     signOut()
   }
 
+  function handleNewDish() {
+    navigation('/newdish')
+  }
+
   return (
     <Container>
         <Logo to="/profile">
           <BsHexagonFill/>
           <h1>Food Explorer</h1>
         </Logo>
-        <h2>Meus favoritos</h2>
+
+        {
+          user.is_admin === 0 ? 
+          (
+            <>
+              <h2>Meus favoritos</h2>
+            </>
+          ) : 
+          (
+            <h2>Administrador</h2>      
+          )
+        }
+
         <Input
           icon={FiSearch}
           placeholder="Busque pelas opções de pratos"
           type="text"
           onChange={e => setSearch(e.target.value)}
         />
-        <Button className="btnRequest"
-          icon={FiFileText}
-          title="Meu pedido"          
-        />
+
+        {
+          user.is_admin === 0 ? 
+          (
+            <>
+              <Button 
+                className="btnRequest"
+                icon={FiFileText}
+                title="Meu pedido"          
+              />
+            </>
+          ) : 
+          (
+            <Button 
+              className="btnRequest"
+              icon={FiFileText}
+              title="Meu pedido"
+              onClick={handleNewDish}        
+            />      
+          )
+        }
+
         <ButtonText
           icon={FiLogOut}
           onClick={handleSignOut}
         />
+
     </Container>
   )
 }

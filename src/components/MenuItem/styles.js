@@ -71,5 +71,25 @@ export const Container = styled.div`
         width: 96px;
       }
     }
+
+    >.favorite-dish {
+      font-size: 20px;
+      color: yellow; // -> ajustar a cor
+      background: transparent;
+      border: none;
+      position: absolute;
+      top: 0;
+      right: 20px;
+    }
+
+    >.edit-dish {
+        font-size: 20px;
+        color: yellow; // -> ajustar a cor
+        background: transparent;
+        border: none;
+        position: absolute;
+        top: 0;
+        left: 20px;
+    }
   }
 `

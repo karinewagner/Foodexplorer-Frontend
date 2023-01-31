@@ -15,7 +15,7 @@ import { api } from '../../services/api'
 export function Details() {
   const [data, setData] = useState(null)
 
-  const imagemURL = data && `${api.defaults.baseURL}/files/${data.image}`
+  const imageURL = data && `${api.defaults.baseURL}/files/${data.img}`
 
   const params = useParams()
   const navigate = useNavigate()
@@ -35,8 +35,11 @@ export function Details() {
 
   return (
     <Container>
+
       <Header/>
+
       <Content className='content'>
+        
         <ButtonText 
           icon={FiChevronLeft}
           title="voltar"
@@ -45,33 +48,49 @@ export function Details() {
         { 
           data &&
           <div className='dishDetails'>
-            <img width="350" height="350" src={imagemURL} alt="Imagem ilustrativa do prato escolhido" />
+
+            <img width="350" height="350" src={imageURL} alt="Imagem ilustrativa do prato escolhido" />
+
             <div className='descriptionDetails'>
+
               <h2>{data.title} </h2>
               <p>{data.description}</p>
+
               <ul>
                 <li>
                 {
                   data.ingredients.map( ingredient => (
-                    <Tag key={String(ingredient.id)} title={ingredient.name}/>
-                    ))
-                  }
+                    <Tag 
+                      key={String(ingredient.id)} 
+                      title={ingredient.name}
+                    />
+                  ))
+                }
                 </li> 
               </ul>
+
               <div className='amount'>
-                <strong>R$ {data.value}</strong>
+
+                <strong>R$ {data.price}</strong>
+
                 <div className='plusOrMinus'>
                   <ButtonText icon={FiMinus} />
                   <span>01</span>
                   <ButtonText icon={FiPlus} />
                 </div>
+
                 <Button icon={FiFileText} title="incluir" />
-                </div>
+
+              </div>
+
             </div>
+            
           </div>
         }
       </Content>
+
       <Footer/>
+
     </Container>
   )
 }
