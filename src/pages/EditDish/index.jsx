@@ -129,6 +129,7 @@ export function EditDish() {
                     <input 
                       id="imageDish" 
                       type="file"
+                      value={imageFile}
                       onChange={e => setImageFile(e.target.files)} />
 
                   </label>
@@ -148,6 +149,7 @@ export function EditDish() {
               <Input 
                 id="nameDish" 
                 placeholder="Ex: Salada Ceasar"
+                value={title}
                 onChange={e => setTitle(e.target.value)}
               />
 
@@ -163,6 +165,7 @@ export function EditDish() {
                   ingredients.map((ingredient, index) => (
                     <NewIngredient 
                       key={String(index)}
+                      //value={ingredients}
                       onChange={e => setNewIngredient(e.target.value)}
                       onClick={() => handleRemoveIngredient(ingredient)}
                     />
@@ -188,6 +191,7 @@ export function EditDish() {
                 type="text"
                 id="priceDish" 
                 placeholder="R$ 00,00"
+                value={price}
                 onChange={e => setPrice(e.target.value)}
               />
 
@@ -200,6 +204,7 @@ export function EditDish() {
               <Textarea 
                 id="descriptionDish" 
                 placeholder="Fale brevemente sobre o prato, seus ingredientes e/ou composição"
+                defaultValue={description}
                 onChange={e => setDescription(e.target.value)}
               />
 

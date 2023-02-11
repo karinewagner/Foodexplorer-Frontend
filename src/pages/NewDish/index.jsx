@@ -47,12 +47,12 @@ export function NewDish() {
       return alert("Você deixou um ingrediente no campo de adicionar, clique para adicionar ou deixe o campo vázio.")
     }
 
-    if (ingredients.length < 1) {
-      alert("Por gentileza, adicionar no minimo 1 ingredientes!")
+    if (ingredients.length < 2) {
+      alert("Por gentileza, adicionar no minimo 2 ingredientes!")
 
     } else {
       const formData = new FormData()
-      formData.append("img", imageFile)
+      formData.append("img", imageFile[0])
       formData.append("title", title)
       formData.append("description", description)
       formData.append("price", price)
