@@ -1,6 +1,6 @@
 import { Container, Content, Form, ImageDishAdd } from './styles'
 
-import { FiChevronLeft, FiUpload, FiPlusSquare, FiEdit, FiXSquare } from 'react-icons/fi'
+import { FiChevronLeft, FiUpload, FiEdit, FiXSquare } from 'react-icons/fi'
 import { useState, useEffect } from 'react'
 import { useNavigate, useParams } from 'react-router-dom'
 

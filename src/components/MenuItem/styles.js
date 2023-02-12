@@ -36,7 +36,7 @@ export const Container = styled.div`
     > h2 {
       font-family: 'Poppins', sans-serif;
       font-weight: 700;
-      font-size: 24px;
+      font-size: 22px;
       color: ${({ theme }) => theme.COLORS_DARK.FONT_WHITE2};
       
       margin-top: 16px

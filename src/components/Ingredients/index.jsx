@@ -15,7 +15,7 @@ import MaçaImg from '../../img/dishes-image/maça.png'
 import MaracujaImg from '../../img/dishes-image/maracuja.png'
 import MassaImg from '../../img/dishes-image/massa.png'
 import PaoGrandeImg from '../../img/dishes-image/pao.png'
-import PaoPequenoImg from '../../img/dishes-image/paonaan.png'
+import PaoPequenoImg from '../../img/dishes-image/pao-naan.png'
 import PepinoImg from '../../img/dishes-image/pepino.png'
 import PessegoImg from '../../img/dishes-image/pessego.png'
 import PestoImg from '../../img/dishes-image/pesto.png'
@@ -43,7 +43,7 @@ export function Ingredients({ name }) {
       <span>{name == "maracuja" ? <img src={MaracujaImg} alt="" /> : ""}</span>
       <span>{name == "massa" ? <img src={MassaImg} alt="" /> : ""}</span>
       <span>{name == "pao" ? <img src={PaoGrandeImg} alt="" /> : ""}</span>
-      <span>{name == "paonaan" ? <img src={PaoPequenoImg} alt="" /> : ""}</span>
+      <span>{name == "pao-naan" ? <img src={PaoPequenoImg} alt="" /> : ""}</span>
       <span>{name == "pepino" ? <img src={PepinoImg} alt="" /> : ""}</span>
       <span>{name == "pessego" ? <img src={PessegoImg} alt="" /> : ""}</span>
       <span>{name == "pesto" ? <img src={PestoImg} alt="" /> : ""}</span>
