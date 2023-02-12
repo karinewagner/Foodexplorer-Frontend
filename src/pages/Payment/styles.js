@@ -17,59 +17,103 @@ export const Container = styled.div`
   }
 
   .content::-webkit-scrollbar {
-    width: 10px;
+    width: 1rem;
   }
 
   .content::-webkit-scrollbar-thumb {
     background-color: ${({ theme }) => theme.COLORS_DARK.BACKGROUND_LOGO};
-    border-radius: 10px;
+    border-radius: 1rem;
   }
 `
 
 export const Content = styled.div`
   display: flex;
-  align-items: center;
+  align-self: center;
   justify-content: center;
+
+  > a {
+    font-weight: 400;
+    font-size: 2rem;
+    color: ${({ theme }) => theme.COLORS_DARK.FONT_WHITE1};
+
+    padding: 0 .5rem;
+    opacity: 0.8;
+
+      &:hover{
+        opacity: 1;
+      }
+    } 
 
   > section {
     display: flex;
     flex-direction: column;
+    padding: 1rem 6rem;
+
+    font-family: 'Poppins', sans-serif;
+    
+    > h2 {
+      font-size: 3.2rem;
+      font-weight: 500;
+      margin-bottom: 2rem;
+    }
 
     .detailsDish {
       display: flex;
+      gap: 2rem;
+      margin: 1rem 0;
 
       > img {
-        width: 60px;
-        height: 60px;
+        width: 8rem;
+        height: 8rem;
         border-radius: 50%;
       }
 
-      > div > div {
-        display: flex;
-      }
-    }
-
-    .payment {
-
       > div {
-        display: flex;
-        flex-direction: row;
-
-        > form  > div {
-          display: flex;
-          flex-direction: column;
-            
-            > div {
-              display: flex;
-              flex-direction: column;
-            }
-          }
+        p {
+          font-size: 1.8rem;
+          line-height: 2.4rem;
+        }
+        
+        > button {
+          font-size: 1.6rem;
+          padding: .5rem;
+          margin-top: 1rem;
         }
       }
     }
-  
-`
-export const Form = styled.form`
 
- 
+    > h3 {
+      font-size: 3.2rem;
+      font-weight: 500;
+      margin: 2rem auto;
+    }
+
+    .payment {
+      display: flex;
+      flex-direction: column;
+      align-self: center;
+      align-items: center;
+      gap: 4rem;
+
+      border: 1px solid gray;
+
+      > div {
+        display: flex;
+        
+        > p {
+          font-size: 2.4rem;
+          line-height: 2.8rem;
+          
+          padding: 4rem 8rem;
+          border: 1px solid gray;
+        }
+      }
+
+      > span {
+        font-size: 2.4rem;
+        line-height: 2.8rem;
+        margin-bottom: 4rem;
+      }
+    }
+  }  
 `

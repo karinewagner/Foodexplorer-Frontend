@@ -4,7 +4,7 @@ export const Container = styled.div`
   grid-area: footer;
 
   width: 100%;
-  height: 84px;
+  height: 8.4rem;
 
   display: flex;
   justify-content: space-between;
@@ -12,23 +12,23 @@ export const Container = styled.div`
 
   background-color: ${({ theme }) => theme.COLORS_DARK.BACKGROUND_NAV};
   
-  padding: 28px 100px;
+  padding: 2.8rem 10rem;
   font-family: 'Roboto', sans-serif;
 
   > div {
     display: flex;
-    gap: 19px;
+    gap: 1.9rem;
 
     > svg {
-      width: 30px;
-      height: 30px;
+      width: 3rem;
+      height: 3rem;
       color: ${({ theme }) => theme.COLORS_DARK.BUTTON_GRAY2};
     }
 
     > h2 {
       font-family: 'Roboto', sans-serif;
       font-weight: 700;
-      font-size: 25px;
+      font-size: 2.5rem;
       color: ${({ theme }) => theme.COLORS_DARK.BUTTON_GRAY2};
     }
   }
@@ -36,7 +36,7 @@ export const Container = styled.div`
   > h3 {
     font-family: 'DM Sans', sans-serif;
     font-weight: 400;
-    font-size: 14px;
+    font-size: 1.4rem;
     color: ${({ theme }) => theme.COLORS_DARK.FONT_WHITE2};
   }
 `

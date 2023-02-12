@@ -17,7 +17,4 @@ export default {
     BUTTON_GRAY: "rgba(255, 255, 255, 0.1)",
     BUTTON_GRAY2: "rgba(255, 255, 255, 0.3)"
   }
-  // font-family: 'DM Sans', sans-serif;
-  // font-family: 'Poppins', sans-serif;
-  // font-family: 'Roboto', sans-serif;
 }

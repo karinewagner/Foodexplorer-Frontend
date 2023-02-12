@@ -1,18 +1,18 @@
 import styled from 'styled-components'
 
 export const Container = styled.div`
-  width: 300px;
-  height: 512px;
-  padding: 5px 40px 10px;
+  width: 30rem;
+  height: 51.2rem;
+  padding: .5rem 4rem 1rem;
 
   background: rgba(0, 0, 0, 0.32);
   border: 1px solid rgba(0, 0, 0, 0.65);
-  border-radius: 8px;
+  border-radius: .8rem;
 
   display: block;
   justify-content: center;
   align-items: center;
-  text-align: center;
+  text-align: center; 
 
   .btns { 
     display: flex;
@@ -22,7 +22,7 @@ export const Container = styled.div`
       background-color: transparent;
       margin: 0;
       padding: 0;
-      width: 40px;
+      width: 4rem;
     }
   }
 
@@ -31,33 +31,38 @@ export const Container = styled.div`
     > button {
       background-color: rgba(0, 0, 0, 0);
       border: none;
+
+      > img {
+        width: 22rem;
+        height: 22rem;
+      }
     }
 
     > h2 {
       font-family: 'Poppins', sans-serif;
       font-weight: 700;
-      font-size: 22px;
+      font-size: 2rem;
       color: ${({ theme }) => theme.COLORS_DARK.FONT_WHITE2};
       
-      margin-top: 16px
+      margin-top: 1.6rem
     }
     
     > p {
       font-family: 'Roboto', sans-serif;
       font-weight: 400;
-      font-size: 14px;
+      font-size: 1.4rem;
       color: ${({ theme }) => theme.COLORS_DARK.FONT_LABEL};
       
-      margin: 16px 0;
+      margin: 1.6rem 0;
     }
 
     > strong {
       font-family: 'Roboto', sans-serif;
       font-weight: 400;
-      font-size: 32px;
+      font-size: 3.2rem;
       color: ${({ theme }) => theme.COLORS_DARK.VALUE_BLUE};
       
-      margin: 0 16px 0;
+      margin: 0 1.6rem 0;
     }
     
     
@@ -65,51 +70,49 @@ export const Container = styled.div`
       display: flex;
       justify-content: center;
       align-items: center;
-      margin-top: 17px;
-      margin-bottom: 36px;
+      margin-top: 1.7rem;
+      margin-bottom: 3.6rem;
       
       .plusOrMinus {
-        width: 96px;
+        width: 9.6rem;
 
         display: flex;
         align-items: center;
-        gap: 10px;
+        gap: 1rem;
 
         > button {
           background-color: transparent;
           margin: 0;
           padding: 0;
-          width: 20px;
+          width: 2rem;
         }
 
         > span {
-          font-size: 20px;
+          font-size: 2rem;
         }
       }
 
       > button {
-        width: 96px;
+        width: 9.6rem;
       }
     }
 
     >.favorite-dish {
-      font-size: 20px;
-      color: yellow; // -> ajustar a cor
+      font-size: 2rem;
       background: transparent;
       border: none;
 
       top: 0;
-      right: 20px;
+      right: 20rem;
     }
 
     >.edit-dish {
-        font-size: 20px;
-        color: yellow; // -> ajustar a cor
-        background: transparent;
-        border: none;
+      font-size: 2rem;
+      background: transparent;
+      border: none;
 
-        top: 0;
-        left: 20px;
+      top: 0;
+      left: 2rem;
     }
   }
 `

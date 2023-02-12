@@ -28,15 +28,21 @@ export function MenuItem({ data }) {
       
       <div className='btns'>
         {
-          user.is_admin && 
-            <Button
-              icon={BsPencil}
-              className='edit-dish'
-              onClick={() => handleEditDish(data.id)}
-            />
+          user.is_admin === 0 ?
+          (
+            <Button className='favorite-dish' icon={FiHeart} />
+          ) :
+          (
+            <>
+              <Button className='favorite-dish' icon={FiHeart} />
+              <Button
+                icon={BsPencil}
+                className='edit-dish'
+                onClick={() => handleEditDish(data.id)}
+              />
+            </>
+          )
         }
-
-        <Button className='favorite-dish' icon={FiHeart} />
       </div>
 
       {
@@ -44,7 +50,7 @@ export function MenuItem({ data }) {
           <div className='itemOfList'>
 
             <button type="button" onClick={() => handleDetails(data.id)}>
-              <img width="230" height="230" src={imageURL} alt="Imagem ilustrativa do prato escolhido"/>
+              <img src={imageURL} alt="Imagem ilustrativa do prato escolhido"/>
             </button>
 
             <h2>{data.title} &gt;</h2>

@@ -17,18 +17,18 @@ export const Container = styled.div`
   }
 
   .content::-webkit-scrollbar {
-    width: 10px;
+    width: 1rem;
   }
 
   .content::-webkit-scrollbar-thumb {
     background-color: ${({ theme }) => theme.COLORS_DARK.BACKGROUND_LOGO};
-    border-radius: 10px;
+    border-radius: 1rem;
   }
 `
 
 export const Content = styled.div`
-  height: 450px;
-  margin: 32px 123px 0;
+  height: 45rem;
+  margin: 3.2rem 12.3rem 0;
 
   font-family: 'Poppins', sans-serif;
   color: ${({ theme }) => theme.COLORS_DARK.FONT_WHITE2};
@@ -38,24 +38,24 @@ export const Content = styled.div`
     align-items: center;
 
     font-weight: 500;
-    font-size: 24px;
+    font-size: 2.4rem;
 
     > svg {
-      height: 30px;
-      width: 30px;
+      height: 3rem;
+      width: 3rem;
     }
   } 
 
   > h2 {
     font-weight: 500;
-    font-size: 32px;  
+    font-size: 3.2rem;  
 
-    margin: 24px 0 32px;
+    margin: 2.4rem 0;
   }
 
   > form {
       display: grid;
-      gap: 20px;
+      gap: 2rem;
       grid-template-areas: 
       'img name name categ'
       'ingr ingr ingr value'
@@ -95,16 +95,16 @@ export const Content = styled.div`
     width: 100%;
   
     display: flex;
-    gap: 20px;
+    gap: 2rem;
 
-    margin-bottom: 5px;
+    margin-bottom: .5rem;
   
     > button {        
       border: 1px solid #FFFFFF;
-      border-radius: 5px;
+      border-radius: .5rem;
       
       font-weight: 500;
-      font-size: 14px;
+      font-size: 1.4rem;
       
       background-color: ${({ theme }) => theme.COLORS_DARK.BUTTON_GRAY};
       
@@ -113,7 +113,7 @@ export const Content = styled.div`
       }
 
       > svg {
-        margin-right: 10px;
+        margin-right: 1rem;
       }
     }
   }
@@ -121,22 +121,19 @@ export const Content = styled.div`
 
 export const Form = styled.form` 
   > section > h3 {
-    margin-bottom: 10px;
+    margin-bottom: 1rem;
 
     font-family: 'Roboto', sans-serif;
     font-weight: 500;
-    font-size: 16px;
+    font-size: 1.6rem;
     color: ${({ theme }) => theme.COLORS_DARK.FONT_LABEL};
   }
 
   > section > .input {
     display: flex;
-    padding: 10px;
-
-    border-radius: 5px;
-    border: 1px solid ${({ theme }) => theme.COLORS_DARK.FONT_WHITE};
-
+    padding: 1rem;
     background: transparent;
+    border: 1px solid ${({ theme }) => theme.COLORS_DARK.FONT_WHITE};
   }
 
 `
@@ -144,14 +141,14 @@ export const Form = styled.form`
 export const ImageDishAdd = styled.div`
   position: relative;
 
-  padding: 5px 10px;
+  padding: .5rem 1rem;
 
   display: flex;
   align-items: center;
  
   > label {
-    width: 300px;
-    height: 50px;
+    width: 30rem;
+    height: 5rem;
 
     background-color: transparent;
     border: none;
@@ -170,11 +167,11 @@ export const ImageDishAdd = styled.div`
   }
 
   > span {
-    margin-left: 30px;
+    margin-left: 3rem;
 
     font-family: 'Roboto', sans-serif;
     font-weight: 500;
-    font-size: 14px;
+    font-size: 1.4rem;
     color: ${({ theme }) => theme.COLORS_DARK.FONT_LABEL};
   }
 

@@ -17,17 +17,18 @@ export const Container = styled.div`
   }
 
   .content::-webkit-scrollbar {
-    width: 10px;
+    width: 1rem;
   }
 
   .content::-webkit-scrollbar-thumb {
     background-color: ${({ theme }) => theme.COLORS_DARK.BACKGROUND_LOGO};
-    border-radius: 10px;
+    border-radius: 1rem;
   }
 `
 
 export const Content = styled.div`
   width: 100%;
+  height: 100vh;
   
   > main {
     font-family: 'Poppins', sans-serif;
@@ -37,51 +38,31 @@ export const Content = styled.div`
     justify-content: center;
     align-items: center;
     
-    width: 100hw;
-    height: 260px;
-    margin: 164px;
+    width: 70%;
+    margin: 5rem auto;
     
     background: linear-gradient(180deg, #091E26 0%, #00131C 100%);
-    border-radius: 8px;
+    border-radius: .8rem;
     
     > img {
-      margin-top: -145px;
-      margin-left: -145px;
+      height: 35rem;
+      width: 35rem;
     }
 
-    > div {    
+    > div {
+      display: block;
+      justify-content: center;
+      align-items: center;
+
       > h2 {
         font-weight: 500;
-        font-size: 40px;
+        font-size: 4rem;
       }
       
       > p {
         font-weight: 400;
-        font-size: 16px;
+        font-size: 1.6rem;
       }
     }
-  }
-
-  > section {
-    display: flex;
-    flex-direction: column;
-  
-
-    > h2 {
-      margin: 40px 124px ;
-
-      font-family: 'Poppins', sans-serif;
-      font-weight: 500;
-      font-size: 32px;
-
-      color: ${({ theme }) => theme.COLORS_DARK.FONT_WHITE2};
-    }
-
-    > div {
-      display: flex;
-      justify-content: center;
-      gap: 27px;
-    }
-  }
-  
+  } 
 `

@@ -2,20 +2,20 @@ import styled from 'styled-components'
 
 export const Container = styled.textarea`
   width: 100%;
-  height: 150px;
+  height: 15rem;
 
   background: transparent;
   border: none;
   outline: 0;
   resize: none;
-  padding: 16px 14px;
+  padding: 1.6rem 1.4rem;
   
   font-family: 'Roboto', sans-serif;
   font-weight: 400;
-  font-size: 16px;
+  font-size: 1.6rem;
   color: ${({ theme }) => theme.COLORS_DARK.FONT_WHITE};
 
-  border-radius: 5px;
+  border-radius: .5rem;
   border: 1px solid #FFFFFF;
 
   &:placeholder {

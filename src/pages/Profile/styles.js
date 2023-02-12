@@ -12,23 +12,23 @@ export const Container = styled.div`
       align-items: center;
 
       width: 100%;
-      height: 80px;
+      height: 8rem;
 
-      padding: 25px 50px;
+      padding: 2.5rem 5rem;
 
-      font-size: 20px;
+      font-size: 2rem;
       color: white;
     }
   }
 `
 
 export const Form = styled.form`
-  max-width: 500px;
+  max-width: 50rem;
   margin: 0 auto;
 
-  padding: 10px 40px;
+  padding: 1rem 4rem;
 
-  border-radius: 20px;
+  border-radius: 2rem;
   background-color: ${({ theme }) => theme.COLORS_DARK.BACKGROUND_START};
 
   display: flex;
@@ -45,13 +45,13 @@ export const Form = styled.form`
     > label {
       font-family: 'Roboto', sans-serif;
       font-weight: 400;
-      font-size: 16px;
+      font-size: 1.6rem;
       color: ${({ theme }) => theme.COLORS_DARK.FONT_LABEL};
-      margin: 32px 0 12px;
+      margin: 3.2rem 0 1.2rem;
     }
   }
 
   > button {
-    margin: 32px 0;
+    margin: 3.2rem 0;
   }
 `

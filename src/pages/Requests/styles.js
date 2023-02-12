@@ -17,19 +17,19 @@ export const Container = styled.div`
   }
 
   .content::-webkit-scrollbar {
-    width: 10px;
+    width: 1rem;
   }
 
   .content::-webkit-scrollbar-thumb {
     background-color: ${({ theme }) => theme.COLORS_DARK.BACKGROUND_LOGO};
-    border-radius: 10px;
+    border-radius: 1rem;
   }
 `
 
 export const Content = styled.div`
   width: 80%;
 
-  margin: 0 auto 35px;
+  margin: 0 auto 3.5rem;
 
   font-family: 'Poppins', sans-serif;
   color: ${({ theme }) => theme.COLORS_DARK.FONT_WHITE2};
@@ -38,29 +38,27 @@ export const Content = styled.div`
     display: flex;
     justify-content: space-between;
 
-    margin: 35px 0;
+    margin: 3.5rem 0;
 
     > a {
     display: flex;
     align-items: center;
 
     font-weight: 400;
-    font-size: 18px;
+    font-size: 2rem;
     color: ${({ theme }) => theme.COLORS_DARK.FONT_WHITE1};
 
-    background-color: ${({ theme }) => theme.COLORS_DARK.BUTTON_GRAY2};
-    padding: 0 5px;
-    border-radius: 8px;
-    opacity: 0.6;
+    padding: 0 .5rem;
+    opacity: 0.8;
 
       &:hover{
-        opacity: 0.9;
+        opacity: 1;
       }
     } 
     
     h2 {
       font-weight: 500;
-      font-size: 32px;
+      font-size: 3.2rem;
     }
   }
   
@@ -68,20 +66,33 @@ export const Content = styled.div`
     width: 100%;
     
     border: 2px solid gray;
-    border-radius: 10px;
+    border-radius: 1rem;
 
     font-family: 'Roboto', sans-serif;
-    font-size: 14px;
+    font-size: 1.4rem;
     
     > thead > tr > th{
       border-left: 2px solid gray;
 
-      padding: 20px;
-      min-width: 100px;      
+      padding: 2rem;
+      min-width: 10rem;      
 
       text-align: left;
       
       font-weight: 700;
+      font-size: 1.6rem;
+    }
+
+    > tbody > tr > th {
+      border-left: 2px solid gray;
+      border-top: 2px solid gray;
+      
+      padding: 2rem;
+      text-align: left;
+      
+      font-weight: 400;
+      font-size: 1.6rem;
+      color: ${({ theme }) => theme.COLORS_DARK.FONT_LABEL};
     }
 
     > thead > tr > th:nth-child(1) {
@@ -91,29 +102,16 @@ export const Content = styled.div`
     > tbody > tr > th:nth-child(1) {
       display: flex;
       align-items: center;
-      gap: 10px;
+      gap: 1rem;
 
       border-left: none;
 
       > .statusCircle {
         background-color: blue;
         border-radius: 50%;
-        width: 8px;
-        height: 8px;
+        width: .8rem;
+        height: .8rem;
       }
     }
-
-    > tbody > tr > th {
-      border-left: 2px solid gray;
-      border-top: 2px solid gray;
-      
-      padding: 20px;
-      text-align: left;
-      
-      font-weight: 400;
-      color: ${({ theme }) => theme.COLORS_DARK.FONT_LABEL};
-    }
-  }
-
- 
+  } 
 `

@@ -35,6 +35,10 @@ export function Header() {
     navigate(`/requests`)
   }
 
+  function handleMyCurrentRequest() {
+    navigate(`/payment`)
+  }
+
   return (
     <Container>
         <Logo to="/profile">
@@ -50,7 +54,11 @@ export function Header() {
             </>
           ) : 
           (
-            <h2>Meus favoritos</h2>      
+            <Button 
+              className="btnMyRequest"
+              title="Historico de pedido"
+              onClick={handleMyRequests} 
+            />     
           )
         }
 
@@ -77,8 +85,8 @@ export function Header() {
             <Button 
               className="btnRequest"
               icon={FiFileText}
-              title="Meu pedido"
-              onClick={handleMyRequests} 
+              title="Meu pedido atual"
+              onClick={handleMyCurrentRequest} 
             />      
           )
         }

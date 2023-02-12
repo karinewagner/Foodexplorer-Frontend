@@ -11,33 +11,33 @@ export const Container = styled.div`
     display: flex;
     justify-content: center;
     align-items: center;
-    gap: 19px;
+    gap: 1.9rem;
     margin: auto;
 
     > svg {
-      width: 45px;
-      height: 45px;
+      width: 4.5rem;
+      height: 4.5rem;
       color: ${({ theme }) => theme.COLORS_DARK.BACKGROUND_LOGO};
     }
 
     > h1 {
       font-family: 'Roboto', sans-serif;
       font-weight: 700;
-      font-size: 42px;
+      font-size: 4.2rem;
     }
   }
 
-  @media (max-width: 800px) {
+  @media (max-width: 80rem) {
     display: flex;
     flex-direction: column;
   }  
 `
 
 export const Form = styled.form`
-  width: 500px;
-  padding: 64px;
+  width: 50rem;
+  padding: 6.4rem;
 
-  border-radius: 16px;
+  border-radius: 1.6rem;
   background-color: ${({ theme }) => theme.COLORS_DARK.BACKGROUND_START};
 
   display: flex;
@@ -49,7 +49,7 @@ export const Form = styled.form`
   > h2 {
     font-family: 'Poppins', sans-serif;
     font-weight: 400;
-    font-size: 32px;
+    font-size: 3.2rem;
     color: ${({ theme }) => theme.COLORS_DARK.FONT_WHITE};
   }
 
@@ -61,14 +61,14 @@ export const Form = styled.form`
     > label {
       font-family: 'Roboto', sans-serif;
       font-weight: 400;
-      font-size: 16px;
+      font-size: 1.6rem;
       color: ${({ theme }) => theme.COLORS_DARK.FONT_LABEL};
-      margin-top: 32px;
-      margin-bottom: 8px;
+      margin-top: 3.2rem;
+      margin-bottom: .8rem;
     }
   }
 
   > button {
-    margin: 32px 0;
+    margin: 3.2rem 0;
   }
 `

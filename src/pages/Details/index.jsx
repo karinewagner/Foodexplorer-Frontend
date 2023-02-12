@@ -49,7 +49,7 @@ export function Details() {
           data &&
           <div className='dishDetails'>
 
-            <img width="350" height="350" src={imageURL} alt="Imagem ilustrativa do prato escolhido" />
+            <img src={imageURL} alt="Imagem ilustrativa do prato escolhido" />
 
             <div className='descriptionDetails'>
 

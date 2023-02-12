@@ -2,7 +2,7 @@ import styled from 'styled-components'
 
 export const Container = styled.button`
   width: 100%;
-  height: 49px;
+  height: 4.9rem;
 
   display: flex;
   flex-direction: center;
@@ -13,10 +13,11 @@ export const Container = styled.button`
   color: ${({ theme }) => theme.COLORS_DARK.FONT_WHITE};
 
   border: 0;
-  padding: 0 16px;
-  border-radius: 5px;
+  padding: 0 1.6rem;
+  border-radius: .5rem;
   font-family: 'Poppins', sans-serif;
-  font-size: 500;
+  font-weight: 500;
+  font-size: 1.4rem;
 
   &:disabled {
     opacity: 0.5;

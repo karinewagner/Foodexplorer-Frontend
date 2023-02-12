@@ -5,11 +5,11 @@ export const Container = styled.section`
     flex-direction: column;
   
     > h2 {
-      margin: 40px 124px ;
+      margin-inline-start: 10%;
 
       font-family: 'Poppins', sans-serif;
       font-weight: 500;
-      font-size: 32px;
+      font-size: 3.2rem;
 
       color: ${({ theme }) => theme.COLORS_DARK.FONT_WHITE2};
     }
@@ -17,6 +17,7 @@ export const Container = styled.section`
     > div {
       display: flex;
       justify-content: center;
-      gap: 27px;
+      gap: 2.7rem;
+      margin: 5rem auto;
     }
 `

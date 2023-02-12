@@ -17,17 +17,17 @@ export const Container = styled.div`
   }
 
   .content::-webkit-scrollbar {
-    width: 10px;
+    width: 1rem;
   }
 
   .content::-webkit-scrollbar-thumb {
     background-color: ${({ theme }) => theme.COLORS_DARK.BACKGROUND_LOGO};
-    border-radius: 10px;
+    border-radius: 1rem;
   }
 `
 
 export const Content = styled.div`
-  margin: 30px auto;
+  margin: 3rem auto;
 
   font-family: 'Poppins', sans-serif;
   color: ${({ theme }) => theme.COLORS_DARK.FONT_WHITE2};
@@ -37,11 +37,11 @@ export const Content = styled.div`
     align-items: center;
 
     font-weight: 500;
-    font-size: 24px;
+    font-size: 2.4rem;
 
     > svg {
-      height: 30px;
-      width: 30px;
+      height: 3rem;
+      width: 3rem;
     }
   } 
 
@@ -49,9 +49,14 @@ export const Content = styled.div`
     display: flex;
     justify-content: flex-start;
     align-items: center;
-    gap: 42px;
+    gap: 4.2rem;
 
-    margin-top: 40px
+    margin-top: 4rem;
+
+    > img {
+      width: 36rem;
+      height: 36rem;
+    }
   }
 
   .descriptionDetails {
@@ -61,14 +66,14 @@ export const Content = styled.div`
 
     > h2 {
       font-weight: 500;
-      font-size: 40px;
+      font-size: 4rem;
     }
 
     > p {
       font-weight: 400;
-      font-size: 24px;
+      font-size: 2.4rem;
   
-      margin-top: 8px;
+      margin-top: .8rem;
     }
 
     > ul {
@@ -77,13 +82,13 @@ export const Content = styled.div`
       display: flex;
       flex-direction: row;
       align-items: center;
-      gap: 20px;
+      gap: 2rem;
 
-      margin: 26px 0 47px;
+      margin: 2.6rem 0 4.7rem;
 
       > li {
         display: flex;
-        gap: 20px;
+        gap: 2rem;
         align-items: center;
       }
     }
@@ -95,16 +100,16 @@ export const Content = styled.div`
       flex-direction: row;
       justify-content: space-between;
       align-items: center;
-      gap: 20px;
+      gap: 2rem;
 
-      max-width: 600px;
+      max-width: 60rem;
 
       font-family: 'Roboto', sans-serif;
 
       > strong {
-        width: 150px;
+        width: 15rem;
         font-weight: 400;
-        font-size: 32px;
+        font-size: 3.2rem;
         color: ${({ theme }) => theme.COLORS_DARK.VALUE_BLUE};
       }
       
@@ -112,25 +117,25 @@ export const Content = styled.div`
         display: flex;
         flex-direction: row;
         align-items: center;
-        gap: 10px;
+        gap: 1rem;
 
         > button {
           background-color: transparent;
           margin: 0;
           padding: 0;
-          width: 20px;
+          width: 2rem;
         }
 
         > span {
-          font-size: 20px;
+          font-size: 2rem;
         }
       }
 
       > button {
-        max-width: 110px;
+        max-width: 11rem;
 
         font-weight: 500;
-        font-size: 14px;
+        font-size: 1.4rem;
       }
     }
   }

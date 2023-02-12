@@ -89,131 +89,127 @@ export function NewDish() {
 
       <Header/>
 
-      <main>
+      <Content className='content'>
 
-        <Content className='content'>
+        <ButtonText 
+          icon={FiChevronLeft}
+          title="voltar"
+          onClick={backToHome}
+        />
 
-          <ButtonText 
-            icon={FiChevronLeft}
-            title="voltar"
-            onClick={backToHome}
-          />
+        <h2>Adicionar prato</h2>
 
-          <h2>Adicionar prato</h2>
+        <Form>
 
-          <Form>
+          <section>
 
-            <section>
+            <h3>Imagem do prato</h3>
 
-              <h3>Imagem do prato</h3>
+            <div className='input'>
 
-              <div className='input'>
+              <ImageDishAdd>
+                <label htmlFor="imageDish">
 
-                <ImageDishAdd>
-                  <label htmlFor="imageDish">
+                  <FiUpload/>
+                  <input 
+                    id="imageDish" 
+                    type="file"
+                    onChange={e => setImageFile(e.target.files)} />
+                </label>
 
-                    <FiUpload/>
-                    <input 
-                      id="imageDish" 
-                      type="file"
-                      onChange={e => setImageFile(e.target.files)} />
-                  </label>
+                <span>escolha uma imagem</span>
 
-                  <span>escolha uma imagem</span>
+              </ImageDishAdd>
 
-                </ImageDishAdd>
+            </div>
 
-              </div>
+          </section>
 
-            </section>
+          <section>
 
-            <section>
+            <h3>Nome</h3>
 
-              <h3>Nome</h3>
+            <Input 
+              id="nameDish" 
+              placeholder="Ex: Salada Ceasar"
+              onChange={e => setTitle(e.target.value)}
+            />
 
-              <Input 
-                id="nameDish" 
-                placeholder="Ex: Salada Ceasar"
-                onChange={e => setTitle(e.target.value)}
+          </section>
+
+          <section>
+
+            <h3>Categoria</h3>
+
+            <Input 
+              id="categoryDish" 
+              placeholder="Ex: Sobremesa"
+              onChange={e => setCategory(e.target.value)}
+            />
+
+          </section>
+
+          <section>
+
+            <h3>Ingredientes</h3>
+
+            <div className='input'>
+
+              {
+                ingredients.map((ingredient, index) => (
+                  <NewIngredient 
+                    key={String(index)}
+                    value={ingredient}
+                    onChange={(e) => setNewIngredient(e.target.value)}
+                    onClick={() => handleRemoveIngredient(ingredient)}
+                  />
+                ))
+              }
+
+              <NewIngredient 
+                isNew 
+                placeholder="Adicionar"
+                value={newIngredient}
+                onChange={(e) => setNewIngredient(e.target.value)}
+                onClick={handleAddIngredient}
               />
 
-            </section>
+            </div>
 
-            <section>
+          </section>
 
-              <h3>Categoria</h3>
+          <section>
 
-              <Input 
-                id="categoryDish" 
-                placeholder="Ex: Sobremesa"
-                onChange={e => setCategory(e.target.value)}
-              />
+            <h3>Preço</h3>
 
-            </section>
+            <Input 
+              type="text"
+              id="priceDish" 
+              placeholder="R$ 00,00"
+              onChange={e => setPrice(e.target.value)}
+            />
 
-            <section>
+          </section>
 
-              <h3>Ingredientes</h3>
+          <section>
 
-              <div className='input'>
+            <h3>Descrição</h3>
 
-                {
-                  ingredients.map((ingredient, index) => (
-                    <NewIngredient 
-                      key={String(index)}
-                      value={ingredient}
-                      onChange={(e) => setNewIngredient(e.target.value)}
-                      onClick={() => handleRemoveIngredient(ingredient)}
-                    />
-                  ))
-                }
+            <Textarea 
+              id="descriptionDish" 
+              placeholder="Fale brevemente sobre o prato, seus ingredientes e/ou composição."
+              onChange={e => setDescription(e.target.value)}
+            />
 
-                <NewIngredient 
-                  isNew 
-                  placeholder="Adicionar"
-                  value={newIngredient}
-                  onChange={(e) => setNewIngredient(e.target.value)}
-                  onClick={handleAddIngredient}
-                />
+          </section>
 
-              </div>
+          <section className='buttons'>
+            <Button icon={FiPlusSquare} title="Adicionar prato" onClick={handleNewDish}/>
+          </section>
 
-            </section>
+        </Form>
 
-            <section>
-
-              <h3>Preço</h3>
-
-              <Input 
-                type="text"
-                id="priceDish" 
-                placeholder="R$ 00,00"
-                onChange={e => setPrice(e.target.value)}
-              />
-
-            </section>
-
-            <section>
-
-              <h3>Descrição</h3>
-
-              <Textarea 
-                id="descriptionDish" 
-                placeholder="Fale brevemente sobre o prato, seus ingredientes e/ou composição."
-                onChange={e => setDescription(e.target.value)}
-              />
-
-            </section>
-
-            <section className='buttons'>
-              <Button icon={FiPlusSquare} title="Adicionar prato" onClick={handleNewDish}/>
-            </section>
-
-          </Form>
-
-        </Content>
-
-      </main>
+      </Content>
 
       <Footer/>
 

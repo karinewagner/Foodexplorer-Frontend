@@ -31,7 +31,7 @@ export function AppRoutes() {
                 </>
             }
           <Route path="/details/:id" element={<Details />}/>
-          <Route path="/payment/:id" element={<Payment />} />
+          <Route path="/payment" element={<Payment />} />
           <Route path="/profile" element={<Profile />} />
           <Route path="/requests" element={<Requests />} />
       </Routes>
