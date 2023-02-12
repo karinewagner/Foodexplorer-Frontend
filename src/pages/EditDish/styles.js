@@ -57,9 +57,10 @@ export const Content = styled.div`
       display: grid;
       gap: 20px;
       grid-template-areas: 
-      'img name name name'
+      'img name name categ'
       'ingr ingr ingr value'
-      'desc desc desc desc';
+      'desc desc desc desc'
+      'btns btns btns btns';
 
     > section:nth-child(1) {
       grid-area: img;
@@ -70,42 +71,52 @@ export const Content = styled.div`
     }
 
     > section:nth-child(3) {
+      grid-area: categ;
+    }
+
+    > section:nth-child(4) {
       grid-area: ingr;
     }
     
-     > section:nth-child(4) {
+     > section:nth-child(5) {
       grid-area: value;
     }
     
-    > section:nth-child(5) {
+    > section:nth-child(6) {
       grid-area: desc;
+    }
+
+    > section:nth-child(7) {
+      grid-area: btns;
     }
   }
 
   .buttons {
     width: 100%;
-    margin-top: 32px;
   
     display: flex;
-    gap: 40px;
+    gap: 20px;
 
     margin-bottom: 5px;
-  }
   
-  .buttons > button {
-    border: 1px solid #FFFFFF;
-    border-radius: 5px;
-    
-    font-weight: 500;
-    font-size: 14px;
-  
-    background-color: ${({ theme }) => theme.COLORS_DARK.BUTTON_GRAY};
-          
-    &:hover {
-      background-color: ${({ theme }) => theme.COLORS_DARK.BUTTON_GRAY2};
+    > button {        
+      border: 1px solid #FFFFFF;
+      border-radius: 5px;
+      
+      font-weight: 500;
+      font-size: 14px;
+      
+      background-color: ${({ theme }) => theme.COLORS_DARK.BUTTON_GRAY};
+      
+      &:hover {
+        background-color: ${({ theme }) => theme.COLORS_DARK.BUTTON_GRAY2};
+      }
+
+      > svg {
+        margin-right: 10px;
+      }
     }
   }
-
 `
 
 export const Form = styled.form` 

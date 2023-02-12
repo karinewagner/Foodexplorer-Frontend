@@ -1,5 +1,6 @@
 import { Container } from './styles'
 
+import AcucarImg from '../../img/dishes-image/acucar.png'
 import AlfaceImg from '../../img/dishes-image/alface.png'
 import AmeixaImg from '../../img/dishes-image/ameixa.png'
 import AmendoasImg from '../../img/dishes-image/amendoas.png'
@@ -10,6 +11,7 @@ import CanelaImg from '../../img/dishes-image/canela.png'
 import ClarasImg from '../../img/dishes-image/claras.png'
 import DamascoImg from '../../img/dishes-image/damasco.png'
 import FarinhaImg from '../../img/dishes-image/farinha.png'
+import LeiteImg from '../../img/dishes-image/leite.png'
 import LimaoImg from '../../img/dishes-image/limao.png'
 import MaçaImg from '../../img/dishes-image/maça.png'
 import MaracujaImg from '../../img/dishes-image/maracuja.png'
@@ -28,6 +30,7 @@ import WhiskyImg from '../../img/dishes-image/whisky.png'
 export function Ingredients({ name }) {
   return (
     <Container>
+      <span>{name == "acucar" ? <img src={AcucarImg} alt="" /> : ""}</span>
       <span>{name == "alface" ? <img src={AlfaceImg} alt="" /> : ""}</span>
       <span>{name == "ameixa" ? <img src={AmeixaImg} alt="" /> : ""}</span>
       <span>{name == "amendoas" ? <img src={AmendoasImg} alt="" /> : ""}</span>
@@ -38,6 +41,7 @@ export function Ingredients({ name }) {
       <span>{name == "claras" ? <img src={ClarasImg} alt="" /> : ""}</span>
       <span>{name == "damasco" ? <img src={DamascoImg} alt="" /> : ""}</span>
       <span>{name == "farinha" ? <img src={FarinhaImg} alt="" /> : ""}</span>
+      <span>{name == "leite" ? <img src={LeiteImg} alt="" /> : ""}</span>
       <span>{name == "limao" ? <img src={LimaoImg} alt="" /> : ""}</span>
       <span>{name == "maca" ? <img src={MaçaImg} alt="" /> : ""}</span>
       <span>{name == "maracuja" ? <img src={MaracujaImg} alt="" /> : ""}</span>

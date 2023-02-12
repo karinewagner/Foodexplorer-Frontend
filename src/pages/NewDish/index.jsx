@@ -17,6 +17,7 @@ import { api } from '../../services/api'
 export function NewDish() {
   const [imageFile, setImageFile] = useState(null)
   const [title, setTitle] = useState("")
+  const [category, setCategory] = useState("")
   const [price, setPrice] = useState("")
   const [description, setDescription] = useState("")
 
@@ -43,7 +44,7 @@ export function NewDish() {
       return alert("A inclusão de uma imagem ao prato é obrigatória, por gentileza ajustar para continuar!")
     }
     
-    if (!title || !price || !description) {
+    if (!title || !category || !price || !description) {
       return alert("Por gentileza, preecha todos os campos!")
     }
 
@@ -58,8 +59,9 @@ export function NewDish() {
       const formData = new FormData()
       formData.append("img", imageFile[0])
       formData.append("title", title)
-      formData.append("description", description)
+      formData.append("category", category)
       formData.append("price", price)
+      formData.append("description", description)
 
       for (let i = 0; i < ingredients.length; i += 1) {
         formData.append("ingredients", ingredients[i])
@@ -139,6 +141,18 @@ export function NewDish() {
 
             <section>
 
+              <h3>Categoria</h3>
+
+              <Input 
+                id="categoryDish" 
+                placeholder="Ex: Sobremesa"
+                onChange={e => setCategory(e.target.value)}
+              />
+
+            </section>
+
+            <section>
+
               <h3>Ingredientes</h3>
 
               <div className='input'>
@@ -191,9 +205,9 @@ export function NewDish() {
 
             </section>
 
-            <div className='buttons'>
+            <section className='buttons'>
               <Button icon={FiPlusSquare} title="Adicionar prato" onClick={handleNewDish}/>
-            </div>
+            </section>
 
           </Form>
 

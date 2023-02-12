@@ -17,6 +17,7 @@ import { api } from '../../services/api'
 export function EditDish() {
   const [imageFile, setImageFile] = useState(null)
   const [title, setTitle] = useState("")
+  const [category, setCategory] = useState("")
   const [price, setPrice] = useState("")
   const [description, setDescription] = useState("")
 
@@ -44,7 +45,7 @@ export function EditDish() {
       return alert("A atualização da imagem é obrigatória, por gentileza ajustar para continuar!")
     }
 
-    if (!title || !price || !description) {
+    if (!title || !category || !price || !description) {
       alert("Por gentileza, preecha todos os campos!")
     }
 
@@ -59,8 +60,9 @@ export function EditDish() {
         const formData = new FormData()
         formData.append("img", imageFile[0])
         formData.append("title", title)
-        formData.append("description", description)
+        formData.append("category", category)
         formData.append("price", price)
+        formData.append("description", description)
 
         for (let i = 0; i < ingredients.length; i += 1) {
           formData.append("ingredients", ingredients[i])
@@ -97,9 +99,10 @@ export function EditDish() {
     async function fetchDish() {
       const response = await api.get(`/dishes/${params.id}`)
 
-      const { title, description, price, ingredients } = response.data
+      const { title, description, category, price, ingredients } = response.data
       setTitle(title)
       setDescription(description)
+      setCategory(category)
       setPrice(price)
       setIngredients(ingredients.map(item => item.name))
     }
@@ -166,6 +169,19 @@ export function EditDish() {
 
             <section>
 
+              <h3>Categoria</h3>
+
+              <Input 
+                id="categoryDish" 
+                placeholder="Ex: Sobremesa"
+                defaultValue={category}
+                onChange={e => setCategory(e.target.value)}
+              />
+
+            </section>
+
+            <section>
+
               <h3>Ingredientes</h3>
 
               <div className='input'>
@@ -220,10 +236,10 @@ export function EditDish() {
 
             </section>
 
-            <div className='buttons'>
+            <section className='buttons'>
               <Button icon={FiEdit} title="Editar prato" onClick={handleEditDish}/>
               <Button icon={FiXSquare} title="Excluir prato" onClick={handleRemoveDish}/>
-            </div>
+            </section>
 
           </Form>
 

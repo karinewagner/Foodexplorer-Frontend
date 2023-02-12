@@ -9,7 +9,6 @@ import { MenuItem } from '../../components/MenuItem'
 import { Footer } from '../../components/Footer'
 
 import { useDishes } from '../../hooks/dish'
-import { api } from '../../services/api'
 
 export function Home() {
   const { dishes } = useDishes();
@@ -34,11 +33,12 @@ export function Home() {
 
         <Section title="Pratos principais">
 
-          {
-            dishes.map((item, index) => (
+        {
+          dishes.map((item, index) => (
+            item.category === 'prato principal' && 
               <MenuItem key={index} data={item}/>
-            ))
-          }
+          ))
+        }
 
         </Section>
 
@@ -46,7 +46,8 @@ export function Home() {
 
           {
             dishes.map((item, index) => (
-              <MenuItem key={index} data={item}/>
+              item.category === 'sobremesa' && 
+                <MenuItem key={index} data={item}/>
             ))
           }
 
@@ -56,6 +57,7 @@ export function Home() {
 
           {
             dishes.map((item, index) => (
+              item.category === 'bebida' && 
               <MenuItem key={index} data={item} />
             ))
           }
