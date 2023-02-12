@@ -1,8 +1,6 @@
 import { Container, Content } from './styles'
 import BackgroundImg from '../../img/background/img-main.png'
 
-//import { Carousel } from 'react-responsive-carousel'
-
 import { Header } from '../../components/Header'
 import { Section } from '../../components/Section'
 import { MenuItem } from '../../components/MenuItem'
@@ -33,12 +31,12 @@ export function Home() {
 
         <Section title="Pratos principais">
 
-        {
-          dishes.map((item, index) => (
-            item.category === 'prato principal' && 
-              <MenuItem key={index} data={item}/>
-          ))
-        }
+          {
+            dishes.map((item, index) => (
+              item.category === 'prato principal' && 
+                <MenuItem key={index} data={item}/>
+            ))
+          }
 
         </Section>
 
@@ -58,7 +56,7 @@ export function Home() {
           {
             dishes.map((item, index) => (
               item.category === 'bebida' && 
-              <MenuItem key={index} data={item} />
+                <MenuItem key={index} data={item} />
             ))
           }
 
