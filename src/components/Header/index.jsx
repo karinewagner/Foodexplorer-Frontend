@@ -6,7 +6,6 @@ import { useNavigate } from 'react-router-dom'
 import { useContext, useState, useEffect } from 'react'
 
 import { Input } from '../Input'
-import { ButtonText } from '../ButtonText'
 import { Button } from '../Button'
 
 import { useAuth } from '../../hooks/auth'
@@ -17,19 +16,23 @@ export function Header() {
   const { fetchDishes } = useContext(DishContext)
   
   const { signOut, user } = useAuth()
-  const navigation = useNavigate()
+  const navigate = useNavigate()
 
   useEffect(() => {
     fetchDishes(search)
   }, [search])
 
   function handleSignOut() {
-    navigation('/')
+    navigate('/')
     signOut()
   }
 
   function handleNewDish() {
-    navigation('/newdish')
+    navigate('/newdish')
+  }
+
+  function handleMyRequests() {
+    navigate(`/requests`)
   }
 
   return (
@@ -40,14 +43,14 @@ export function Header() {
         </Logo>
 
         {
-          user.is_admin === 0 ? 
+          user.is_admin === 1 ? 
           (
             <>
-              <h2>Meus favoritos</h2>
+              <h2>Administrador</h2>
             </>
           ) : 
           (
-            <h2>Administrador</h2>      
+            <h2>Meus favoritos</h2>      
           )
         }
 
@@ -59,13 +62,14 @@ export function Header() {
         />
 
         {
-          user.is_admin === 0 ? 
+          user.is_admin === 1 ? 
           (
             <>
               <Button 
                 className="btnRequest"
                 icon={FiFileText}
-                title="Meu pedido"          
+                title="Cadastrar novo prato"
+                onClick={handleNewDish}        
               />
             </>
           ) : 
@@ -74,12 +78,13 @@ export function Header() {
               className="btnRequest"
               icon={FiFileText}
               title="Meu pedido"
-              onClick={handleNewDish}        
+              onClick={handleMyRequests} 
             />      
           )
         }
 
-        <ButtonText
+        <Button
+          className="btnSignOut"
           icon={FiLogOut}
           onClick={handleSignOut}
         />

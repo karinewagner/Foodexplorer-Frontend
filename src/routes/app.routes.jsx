@@ -22,7 +22,7 @@ export function AppRoutes() {
               user.is_admin === 0 ? 
                 (
                   <>
-                  <Route path="/newdish" element={<Home />}/>
+                  <Route path="/" element={<Home />}/>
                   </>
                 ) : 
                   <>
@@ -31,9 +31,9 @@ export function AppRoutes() {
                 </>
             }
           <Route path="/details/:id" element={<Details />}/>
-          <Route path="/requests/:id" element={<Requests />} />
           <Route path="/payment/:id" element={<Payment />} />
           <Route path="/profile" element={<Profile />} />
+          <Route path="/requests" element={<Requests />} />
       </Routes>
     </DishesProvider>
   )

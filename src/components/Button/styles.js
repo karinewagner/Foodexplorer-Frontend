@@ -21,8 +21,4 @@ export const Container = styled.button`
   &:disabled {
     opacity: 0.5;
   }
-
-  > svg {
-    margin-right: 16px;
-  }
 `

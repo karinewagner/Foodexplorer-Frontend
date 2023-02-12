@@ -3,28 +3,34 @@ import styled from 'styled-components'
 export const Container = styled.div`
   width: 300px;
   height: 512px;
-  padding: 56px 40px 40px;
+  padding: 5px 40px 10px;
 
   background: rgba(0, 0, 0, 0.32);
   border: 1px solid rgba(0, 0, 0, 0.65);
   border-radius: 8px;
 
-  display: flex;
+  display: block;
   justify-content: center;
   align-items: center;
   text-align: center;
-  
-  position: relative;
 
-  > button > svg { //icon heart
-    position: absolute;
-    top: 20px;
-    right: 20px;
+  .btns { 
+    display: flex;
+    justify-content: space-between;
+
+    > button {
+      background-color: transparent;
+      margin: 0;
+      padding: 0;
+      width: 40px;
+    }
   }
 
   .itemOfList {
-    > img {
-      margin-top: 24px
+
+    > button {
+      background-color: rgba(0, 0, 0, 0);
+      border: none;
     }
 
     > h2 {
@@ -64,9 +70,23 @@ export const Container = styled.div`
       
       .plusOrMinus {
         width: 96px;
+
         display: flex;
+        align-items: center;
         gap: 10px;
+
+        > button {
+          background-color: transparent;
+          margin: 0;
+          padding: 0;
+          width: 20px;
+        }
+
+        > span {
+          font-size: 20px;
+        }
       }
+
       > button {
         width: 96px;
       }
@@ -77,7 +97,7 @@ export const Container = styled.div`
       color: yellow; // -> ajustar a cor
       background: transparent;
       border: none;
-      position: absolute;
+
       top: 0;
       right: 20px;
     }
@@ -87,7 +107,7 @@ export const Container = styled.div`
         color: yellow; // -> ajustar a cor
         background: transparent;
         border: none;
-        position: absolute;
+
         top: 0;
         left: 20px;
     }

@@ -4,7 +4,6 @@ import { FiHeart, FiPlus, FiMinus } from 'react-icons/fi'
 import { BsPencil } from 'react-icons/bs'
 import { useNavigate } from 'react-router-dom'
 
-import { ButtonText } from '../ButtonText'
 import { Button } from '../Button'
 
 import { api } from '../../services/api'
@@ -26,41 +25,47 @@ export function MenuItem({ data }) {
 
   return (
     <Container >
+      
+      <div className='btns'>
+        {
+          user.is_admin && 
+            <Button
+              icon={BsPencil}
+              className='edit-dish'
+              onClick={() => handleEditDish(data.id)}
+            />
+        }
 
-      <ButtonText 
-        className='edit-dish' 
-        onClick={() => handleEditDish(data.id)}
-      >
-        {user.admin === 1 && (<BsPencil/>)}
-      </ButtonText>
+        <Button className='favorite-dish' icon={FiHeart} />
+      </div>
 
-      <ButtonText className='favorite-dish' icon={FiHeart} />
-          {
-            data &&
-              <div className='itemOfList'>
+      {
+        data &&
+          <div className='itemOfList'>
 
-                <button type="button" onClick={() => handleDetails(data.id)}>
-                  <img width="245" height="245" src={imageURL} alt="Imagem ilustrativa do prato escolhido"/>
-                </button>
+            <button type="button" onClick={() => handleDetails(data.id)}>
+              <img width="230" height="230" src={imageURL} alt="Imagem ilustrativa do prato escolhido"/>
+            </button>
 
-                <h2>{data.title} &gt;</h2>
-                <p>{data.description}</p>
-                <strong>R$ {data.value}</strong>
+            <h2>{data.title} &gt;</h2>
+            <p>{data.description}</p>
+            <strong>R$ {data.price}</strong>
 
-                <div className='amount'>
+            <div className='amount'>
 
-                  <div className='plusOrMinus'>
-                    <ButtonText icon={FiMinus} />
-                    <span>01</span>
-                    <ButtonText icon={FiPlus} />
-                  </div>
-                  
-                  <Button title={"incluir"} />
-
-                </div>
-                
+              <div className='plusOrMinus'>
+                <Button icon={FiMinus} />
+                <span>01</span>
+                <Button icon={FiPlus} />
               </div>
-          }
+              
+              <Button title={"incluir"} />
+
+            </div>
+            
+          </div>
+      }
+
     </Container>
   )
 }

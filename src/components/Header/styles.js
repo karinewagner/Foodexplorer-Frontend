@@ -18,8 +18,6 @@ export const Container = styled.div`
   padding: 28px 100px;
   font-family: 'Roboto', sans-serif;
 
-
-
   > h2 {
     font-weight: 400;
     font-size: 16px;
@@ -27,16 +25,27 @@ export const Container = styled.div`
     color: ${({ theme }) => theme.COLORS_DARK.FONT_WHITE2};
   }
 
-  > div { //input
+  > div { 
     max-width: 400px;
   }
 
   > .btnRequest {
     max-width: 216px;
-    
+      
     font-size: 14px;
     line-height: 24px;
     color: ${({ theme }) => theme.COLORS_DARK.FONT_WHITE};
+    
+    > svg {
+      margin-right: 10px;
+    }
+  }
+
+  .btnSignOut {
+    background-color: transparent;
+    margin: 0;
+    padding: 0;
+    width: 40px;
   }
 `
 

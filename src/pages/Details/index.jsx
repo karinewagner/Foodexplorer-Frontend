@@ -74,9 +74,9 @@ export function Details() {
                 <strong>R$ {data.price}</strong>
 
                 <div className='plusOrMinus'>
-                  <ButtonText icon={FiMinus} />
+                  <Button icon={FiMinus} />
                   <span>01</span>
-                  <ButtonText icon={FiPlus} />
+                  <Button icon={FiPlus} />
                 </div>
 
                 <Button icon={FiFileText} title="incluir" />
