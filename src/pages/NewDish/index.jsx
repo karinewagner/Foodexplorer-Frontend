@@ -39,6 +39,10 @@ export function NewDish() {
   }
 
   async function handleNewDish() {
+    if (!imageFile) {
+      return alert("A inclusão de uma imagem ao prato é obrigatória, por gentileza ajustar para continuar!")
+    }
+    
     if (!title || !price || !description) {
       return alert("Por gentileza, preecha todos os campos!")
     }
@@ -74,7 +78,7 @@ export function NewDish() {
         }
       })
 
-    backToHome()
+      navigate("/")
     }
   }
 
@@ -93,7 +97,7 @@ export function NewDish() {
             onClick={backToHome}
           />
 
-          <h2>Editar prato</h2>
+          <h2>Adicionar prato</h2>
 
           <Form>
 
@@ -102,9 +106,10 @@ export function NewDish() {
               <h3>Imagem do prato</h3>
 
               <div className='input'>
-                <ImageDishAdd>
 
+                <ImageDishAdd>
                   <label htmlFor="imageDish">
+
                     <FiUpload/>
                     <input 
                       id="imageDish" 
@@ -115,6 +120,7 @@ export function NewDish() {
                   <span>escolha uma imagem</span>
 
                 </ImageDishAdd>
+
               </div>
 
             </section>
@@ -133,7 +139,7 @@ export function NewDish() {
 
             <section>
 
-              <h3 >Ingredientes</h3>
+              <h3>Ingredientes</h3>
 
               <div className='input'>
 
@@ -142,7 +148,7 @@ export function NewDish() {
                     <NewIngredient 
                       key={String(index)}
                       value={ingredient}
-                      onChange={(e) => setNewIngredient(e.target.value)}//
+                      onChange={(e) => setNewIngredient(e.target.value)}
                       onClick={() => handleRemoveIngredient(ingredient)}
                     />
                   ))
@@ -152,7 +158,7 @@ export function NewDish() {
                   isNew 
                   placeholder="Adicionar"
                   value={newIngredient}
-                  onChange={e => setNewIngredient(e.target.value)}
+                  onChange={(e) => setNewIngredient(e.target.value)}
                   onClick={handleAddIngredient}
                 />
 
@@ -192,9 +198,11 @@ export function NewDish() {
           </Form>
 
         </Content>
+
       </main>
 
       <Footer/>
+
     </Container>
   )
 }

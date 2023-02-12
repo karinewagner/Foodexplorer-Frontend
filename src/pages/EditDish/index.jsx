@@ -38,18 +38,26 @@ export function EditDish() {
   function handleRemoveIngredient(deleted) {
     setIngredients(prevState => prevState.filter((ingredient) => ingredient !== deleted))
   }
-  
+
   async function handleEditDish() {
-      if (!title || !price || !description) {
-        alert("Por gentileza, preecha todos os campos!")
+    if (!imageFile) {
+      return alert("A atualização da imagem é obrigatória, por gentileza ajustar para continuar!")
+    }
+
+    if (!title || !price || !description) {
+      alert("Por gentileza, preecha todos os campos!")
+    }
+
+      if (newIngredient) {
+        return alert("Você deixou um ingrediente no campo de adicionar, clique para adicionar ou deixe o campo vázio para continuar.")
       }
 
-      if (ingredients.length < 1) {
-        alert("Por gentileza, adicionar no minimo 1 ingredientes!")
+      if (ingredients.length < 2) {
+        alert("Por gentileza, adicionar no minimo 2 ingredientes!")
 
       } else {
         const formData = new FormData()
-        formData.append("img", imageFile)
+        formData.append("img", imageFile[0])
         formData.append("title", title)
         formData.append("description", description)
         formData.append("price", price)
@@ -71,7 +79,7 @@ export function EditDish() {
             }
           })
 
-        backToHome()
+          navigate("/")
       }
   }
 
@@ -80,7 +88,7 @@ export function EditDish() {
 
       if(isConfirm) {
         await api.delete(`/dishes/${params.id}`)
-        backToHome()
+        navigate("/")
       }
   }
 
@@ -120,6 +128,7 @@ export function EditDish() {
             <section>
               
               <h3>Imagem do prato</h3>
+
               <div className='input'>
 
                 <ImageDishAdd>
@@ -129,7 +138,7 @@ export function EditDish() {
                     <input 
                       id="imageDish" 
                       type="file"
-                      value={imageFile}
+                      defaultValue={imageFile}
                       onChange={e => setImageFile(e.target.files)} />
 
                   </label>
@@ -149,7 +158,7 @@ export function EditDish() {
               <Input 
                 id="nameDish" 
                 placeholder="Ex: Salada Ceasar"
-                value={title}
+                defaultValue={title}
                 onChange={e => setTitle(e.target.value)}
               />
 
@@ -157,7 +166,7 @@ export function EditDish() {
 
             <section>
 
-              <h3 >Ingredientes</h3>
+              <h3>Ingredientes</h3>
 
               <div className='input'>
 
@@ -165,8 +174,8 @@ export function EditDish() {
                   ingredients.map((ingredient, index) => (
                     <NewIngredient 
                       key={String(index)}
-                      //value={ingredients}
-                      onChange={e => setNewIngredient(e.target.value)}
+                      defaultValue={ingredient}                    
+                      onChange={(e) => setNewIngredient(e.target.value)}
                       onClick={() => handleRemoveIngredient(ingredient)}
                     />
                   ))
@@ -175,7 +184,8 @@ export function EditDish() {
                 <NewIngredient 
                   isNew 
                   placeholder="Adicionar"
-                  onChange={e => setNewIngredient(e.target.value)}
+                  defaultValue={newIngredient}
+                  onChange={(e) => setNewIngredient(e.target.value)}
                   onClick={handleAddIngredient}
                 />
 
@@ -191,7 +201,7 @@ export function EditDish() {
                 type="text"
                 id="priceDish" 
                 placeholder="R$ 00,00"
-                value={price}
+                defaultValue={price}
                 onChange={e => setPrice(e.target.value)}
               />
 
@@ -216,6 +226,7 @@ export function EditDish() {
             </div>
 
           </Form>
+
         </Content>
 
       </main>
