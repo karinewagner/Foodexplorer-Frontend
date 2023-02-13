@@ -69,5 +69,5 @@ npm run dev
 
 ## Previews
 
-![preview](./.github/previews-login.png)
-![preview](./.github/previews.png)
+![preview](./.github/previews-login.PNG)
+![preview](./.github/previews.PNG)
